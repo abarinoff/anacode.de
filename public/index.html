@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Anacode.de - Automated Market Research</title>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/morris.css">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="img/logo.png" height="30px"></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/">Dashboard</a></li>
+                        <li><a href="/about">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="jumbotron">
+            <div class="container">
+                <h2 class="text-center">Chinese text analysis - Technology preview</h2>
+                <p>Please input a text (covered categories: 'airline', 'appliances', 'automotive', 'babies', 'beauty', 'camera', 'ce', 'education', 'entertainment', 'fashion', 'finance', 'fitness', 'food', 'furniture', 'health', 'hotel', 'internet', 'mobile', 'realestate', 'sports', 'travel'):</p>
+                <form class="form-horizontal col-sm-8 col-sm-offset-2">
+                    <div class="form-group">
+                        <label for="exampleText" class="col-sm-4 control-label">No clue? Try these out:</label>
+                        <div class="col-sm-8">
+                            <select id="exampleText" class="form-control">
+                                <option>Real Estate</option>
+                                <option>Automotive Press Release</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <textarea class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="text-center">Sentiment analysis</h2>
+                    <div id="sentiment-analysis"></div>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="text-center">Category Analysis</h2>
+                    <div id="category-analysis"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+        <script src="js/libs/bootstrap.min.js"></script>
+        <script src="js/libs/raphael.min.js"></script>
+        <script src="js/libs/morris.min.js"></script>
+
+        <script type="text/javascript">
+            Morris.Donut({
+                element: 'sentiment-analysis',
+                data: [
+                    {value: 85, label: 'positive'},
+                    {value: 15, label: 'negative'}
+                ],
+                formatter: function (x) { return x + "%"}
+            });
+            Morris.Donut({
+                element: 'category-analysis',
+                data: [
+                    {value: 88.133, label: 'auto'},
+                    {value: 5.234, label: 'digital'},
+                    {value: 2.304, label: 'mobile'},
+                    {value: 1.897, label: 'ce'},
+                    {value: 0.300, label: 'furniture'},
+                    {value: 0.245, label: 'appliances'},
+                    {value: 0.222, label: 'hotel'},
+                    {value: 0.193, label: 'camera'},
+                    {value: 0.190, label: 'sports'},
+                    {value: 0.187, label: 'fitness'},
+                    {value: 0.156, label: 'games'},
+                    {value: 0.143, label: 'education'},
+                    {value: 0.138, label: 'realestate'},
+                    {value: 0.119, label: 'internet'},
+                    {value: 0.119, label: 'airline'},
+                    {value: 0.099, label: 'beauty'},
+                    {value: 0.071, label: 'fashion'},
+                    {value: 0.056, label: 'finance'},
+                    {value: 0.051, label: 'entertainment'},
+                    {value: 0.039, label: 'music'},
+                    {value: 0.031, label: 'food'},
+                    {value: 0.027, label: 'babies'},
+                    {value: 0.022, label: 'books'},
+                    {value: 0.015, label: 'travel'},
+                    {value: 0.006, label: 'health'}
+                ],
+                formatter: function (x) { return x + "%"}
+            });
+        </script>
+    </body>
+</html>

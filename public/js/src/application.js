@@ -1,1 +1,1 @@
-var anacode = angular.module('anacode', ["anacodeControllers", "anacodeServices"]);
+var anacode = angular.module('anacode', ["anacodeModels", "anacodeControllers", "anacodeServices"]);

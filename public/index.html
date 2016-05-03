@@ -16,22 +16,8 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
                     <a class="navbar-brand" href="/"><img src="img/logo.png" height="30px"></a>
                 </div>
-<!--
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/">Dashboard</a></li>
-                        <li><a href="/about">About</a></li>
-                    </ul>
-                </div>
--->
             </div>
         </nav>
 
@@ -61,33 +47,82 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container" ng-show="analysisSucceeded">
             <div class="row">
-                <div class="col-md-6">
-                    <h2 class="text-center">Sentiment analysis</h2>
-                    <div id="sentiment-analysis"></div>
+                <div class="col-md-12">
+                    <h2 class="section-title">Text</h2>
+                    <div ng-bind-html="highlightedText"></div>
                 </div>
-                <div class="col-md-6">
-                    <h2 class="text-center">Category Analysis</h2>
-                    <div id="category-analysis"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title">Text Categorization</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Sentiments</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="sentiment-analysis"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Industries</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+
+                                <div class="row" >
+                                    <div class="span4" >{{item}}</div>
+                                </div>
+
+                                <div class="col-md-4" ng-repeat="industriesColumn in industries">
+                                    <h2 class="text-center">{{ industriesColumn[0].probability }}</h2>
+                                    <h2 class="text-center">{{ industriesColumn[0].label }}</h2>
+                                    <ul class="list-group">
+                                        <li class="list-group-item" ng-repeat="industry in industriesColumn" ng-if="$index >= 1">
+                                            <span class="badge">{{ industry.probability }}</span>
+                                            {{ industry.label }}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <div class="container" ng-show="analysisSucceeded!==undefined && !analysisSucceeded">
+            <div class="alert alert-danger text-center" role="alert">Error occurred during text analysis. Please check provided value and try again.</div>
+        </div>
+
         <script src="js/libs/jquery.min.js"></script>
+        <script src="js/libs/underscore.min.js"></script>
         <script src="js/libs/bootstrap.min.js"></script>
         <script src="js/libs/raphael.min.js"></script>
         <script src="js/libs/morris.min.js"></script>
         <script src="js/libs/angular.min.js"></script>
         <script src="js/libs/angular.resource.min.js"></script>
+        <script src="js/libs/angular.sanitize.min.js"></script>
 
         <script src="js/src/models/models.js"></script>
+        <script src="js/src/models/analysis.data.model.js"></script>
 
         <script src="js/src/controllers/controllers.js"></script>
         <script src="js/src/controllers/dashboard.controller.js"></script>
 
         <script src="js/src/services/services.js"></script>
         <script src="js/src/services/jquery.service.js"></script>
+        <script src="js/src/services/underscore.service.js"></script>
 
         <script src="js/src/application.js"></script>
     </body>

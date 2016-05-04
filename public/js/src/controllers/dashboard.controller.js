@@ -23,6 +23,7 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
                     var analysisData = response.data;
 
                     $scope.highlightedText = $sce.trustAsHtml(analysisData.markup);
+                    $scope.summary = analysisData.summary;
                     $scope.sentiments = _.map(analysisData.sentiment[0], function(sentiment) {
                         return {
                             label: sentiment.label,
@@ -30,6 +31,8 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
                         }
                     });
                     $scope.industries = chunkIndustries(analysisData.industries[0]);
+                    $scope.entityGroups = groupEntities(analysisData.entities);
+                    console.log("Entities: ", $scope.entityGroups);
 
                     $scope.analysisSucceeded = true;
                     $timeout($scope.renderChart, 0);
@@ -75,6 +78,53 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
             });
 
             return chunkedIndustries;
+        }
+
+        function groupEntities(entities) {
+            /*
+             Organizations and companies -> Brands, Company types, Organizations
+             People -> Business roles, People
+             Contexts -> Locations, Dates and times, Holiday
+             Other -> Documents, Marketing concepts, Laws, Body parts
+             * */
+
+            var apiToGroupMap = {
+                producttypes: {group: "products", label: "Products and services"},
+                productmodels: {group: "products", label: "Product models"},
+                features: {group: "products", label: "Product features"},
+
+                locations: {group: "contexts", label: "Locations"}
+            };
+
+            var groups = {
+                products: {label: "Products", entities: []},
+                companies: {label: "Organizations and companies", entities: []},
+                people: {label: "People", entities: []},
+                contexts: {label: "Contexts", entities: []},
+                other: {label: "Other", entities: []}
+            };
+
+            _.each(entities, function(entity, apiEntityName) {
+                if(_.has(apiToGroupMap, apiEntityName)) {
+                    var groupInfo = apiToGroupMap[apiEntityName];
+
+                    groups[groupInfo.group].entities.push({
+                        label: groupInfo.label,
+                        value: entity
+                    });
+                } else {
+                    groups.other.entities.push({
+                        label: capitalizeFirstLetter(apiEntityName),
+                        value: entity
+                    });
+                }
+            });
+
+            return groups;
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
         }
     }
 ]);

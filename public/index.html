@@ -23,12 +23,11 @@
 
         <div class="jumbotron">
             <div class="container">
-                <h2 class="text-center">Chinese text analysis - Technology preview</h2>
-                <p>Please input a text (covered categories: 'airline', 'appliances', 'automotive', 'babies', 'beauty', 'camera', 'ce', 'education', 'entertainment', 'fashion', 'finance', 'fitness', 'food', 'furniture', 'health', 'hotel', 'internet', 'mobile', 'realestate', 'sports', 'travel'):</p>
-                <form class="form-horizontal col-sm-8 col-sm-offset-2">
+                <form class="form-horizontal">
                     <div class="form-group">
-                        <label for="exampleSelector" class="col-sm-4 control-label">No clue? Try these out:</label>
+                        <label class="col-md-4">Please input a text for analysis:</label>
                         <div class="col-sm-8">
+                            <label for="exampleSelector">No clue? Try these out:</label>
                             <select id="exampleSelector" class="form-control"
                                     ng-model="selectedExample"
                                     ng-options="example.name for example in examples"
@@ -41,8 +40,8 @@
                             <textarea id="exampleText" class="form-control" rows="8"></textarea>
                         </div>
                     </div>
-                    <button class="btn btn-default" ng-click="submit()">Submit</button>
-                    <button class="btn btn-default" ng-click="clear()">Clear</button>
+                    <button class="btn btn-default pull-right" ng-click="clear()">Clear</button>
+                    <button class="btn btn-default pull-right" ng-click="submit()">Analyze</button>
                 </form>
             </div>
         </div>
@@ -52,6 +51,12 @@
                 <div class="col-md-12">
                     <h2 class="section-title">Text</h2>
                     <div ng-bind-html="highlightedText"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title">Overall Summary</h2>
+                    <div ng-bind="summary"></div>
                 </div>
             </div>
 
@@ -79,11 +84,6 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-
-                                <div class="row" >
-                                    <div class="span4" >{{item}}</div>
-                                </div>
-
                                 <div class="col-md-4" ng-repeat="industriesColumn in industries">
                                     <h2 class="text-center">{{ industriesColumn[0].probability }}</h2>
                                     <h2 class="text-center">{{ industriesColumn[0].label }}</h2>
@@ -94,6 +94,33 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title">Entities</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4" ng-repeat="entityGroup in entityGroups" ng-if="entityGroup.entities.length > 0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ entityGroup.label }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div ng-repeat="entity in entityGroup.entities">
+                                <h3 class="entity-title" style="border-bottom-color: {{entity.value.background_color}}">{{ entity.label }}</h3>
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="(key, value) in entity.value" ng-if="key !== 'background_color'">
+                                        <span class="badge">{{ value.freq }}</span>
+                                        {{ key }}
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

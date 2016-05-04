@@ -129,19 +129,25 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
         }
 
         function groupEntities(entities) {
-            /*
-             Organizations and companies -> Brands, Company types, Organizations
-             People -> Business roles, People
-             Contexts -> Locations, Dates and times, Holiday
-             Other -> Documents, Marketing concepts, Laws, Body parts
-             * */
-
             var apiToGroupMap = {
                 producttypes: {group: "products", label: "Products and services"},
                 productmodels: {group: "products", label: "Product models"},
+                productversions: {group: "products", label: "Product versions"},
                 features: {group: "products", label: "Product features"},
 
-                locations: {group: "contexts", label: "Locations"}
+                brands: {group: "companies", label: "Brands"},
+                industrys: {group: "companies", label: "Industries"},
+
+                persons: {group: "people", label: "Persons"},
+
+                locations: {group: "contexts", label: "Locations"},
+                dates: {group: "contexts", label: "Dates"},
+                times: {group: "contexts", label: "Times"},
+                holidays: {group: "contexts", label: "Holidays"},
+
+                laws: {group: "other", label: "Laws"},
+                documents: {group: "other", label: "Documents"},
+                bodyparts: {group: "other", label: "Body parts"}
             };
 
             var groups = {

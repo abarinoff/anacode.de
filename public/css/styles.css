@@ -31,6 +31,35 @@ select.form-control {
     color: #7d8995;
 }
 
+.btn {
+    border-radius: 3px;
+}
+
+.btn-action {
+    min-width: 148px;
+}
+
+.btn-default {
+    background-color: rgb(242, 244, 246);
+}
+
+.btn-default:hover {
+    background-color: white;
+}
+
+.btn-default.focus, .btn-default:focus {
+    background-color: #white;
+}
+
+.btn-default.active, .btn-default:active {
+    /**/
+}
+
+.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover,
+.btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover {
+    /**/
+}
+
 .btn-primary {
     color: #ffffff;
     background-color: #bb0025;
@@ -55,7 +84,8 @@ select.form-control {
     border-color: #660014;
 }
 
-.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover {
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover,
+.btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover {
     color: #ffffff;
     background-color: #8f001d;
     border-color: #660014;

@@ -31,42 +31,41 @@
             </div>
         </nav>
 
-        <div class="jumbotron">
-            <div class="container">
-                <div class="row show-grid ">
-                    <div class="col-md-12">
-                        <div class="form-inline">
-                            <div class="form-group">
-                                <label class="form-control-static">Please input a text for analysis:</label>
-                            </div>
+        <!--  Form. -->
+        <div class="container container-under-navbar">
+            <div class="row show-grid ">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label class="form-control-static">Please input a text for analysis:</label>
+                        </div>
 
-                            <div class="form-group pull-right-sm pull-right-md pull-right-lg">
-                                <label for="exampleSelector">No clue? Try these out:</label>
-                                <select id="exampleSelector" class="form-control"
-                                        ng-model="selectedExample"
-                                        ng-options="example.name for example in examples"
-                                        ng-change="onSelectionUpdated()">
-                                </select>
-                            </div>
+                        <div class="form-group pull-right-sm pull-right-md pull-right-lg">
+                            <label for="exampleSelector">No clue? Try these out:</label>
+                            <select id="exampleSelector" class="form-control"
+                                    ng-model="selectedExample"
+                                    ng-options="example.name for example in examples"
+                                    ng-change="onSelectionUpdated()">
+                            </select>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="row show-grid ">
-                    <div class="col-md-12">
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <textarea id="exampleText" class="form-control" rows="8"></textarea>
-                                </div>
+            <div class="row show-grid ">
+                <div class="col-md-12">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <textarea id="exampleText" class="form-control" rows="8"></textarea>
                             </div>
+                        </div>
 
-                            <div class="pull-right">
-                                <button class="btn btn-default btn-action" ng-click="clear()">Clear</button>
-                                <button id="btn-analyze" class="btn btn-primary btn-action" ng-click="submit()">Analyze</button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="pull-right">
+                            <button class="btn btn-default btn-action" ng-click="clear()">Clear</button>
+                            <button id="btn-analyze" class="btn btn-primary btn-action" ng-click="submit()">Analyze</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -75,15 +74,19 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="section-title">Text</h2>
-                    <div class="highlighted-text" ng-bind-html="highlightedText"></div>
+                    <div class="section-body">
+                        <div class="highlighted-text" ng-bind-html="highlightedText"></div>
+                    </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="section-title">Overall Summary</h2>
-                    <div class="panel panel-default">
-                        <div class="panel-body" ng-bind="summary"></div>
+                    <div class="section-body">
+                        <div class="panel panel-default">
+                            <div class="panel-body" ng-bind="summary"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -91,39 +94,43 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="section-title">Text Categorization</h2>
-                </div>
-            </div>
+                    <div class="section-body">
 
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Sentiments</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="sentiment-analysis"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Industries</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-4" ng-repeat="industriesColumn in industries">
-                                    <h2 class="industry-probability text-center">{{ industriesColumn[0].probability }}</h2>
-                                    <h2 class="industry-label text-center">{{ industriesColumn[0].label }}</h2>
-                                    <ul class="list-group">
-                                        <li class="list-group-item" ng-repeat="industry in industriesColumn" ng-if="$index >= 1">
-                                            <span class="badge">{{ industry.probability }}</span>
-                                            {{ industry.label }}
-                                        </li>
-                                    </ul>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Sentiments</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="sentiment-analysis"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Industries</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-4" ng-repeat="industriesColumn in industries">
+                                                <h2 class="industry-probability text-center">{{ industriesColumn[0].probability }}</h2>
+                                                <h2 class="industry-label text-center">{{ industriesColumn[0].label }}</h2>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item" ng-repeat="industry in industriesColumn" ng-if="$index >= 1">
+                                                        <span class="badge">{{ industry.probability }}</span>
+                                                        {{ industry.label }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -131,29 +138,31 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="section-title">Entities</h2>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4" ng-repeat="col in [0, 1, 2]" data-debug="{{ $index }}">
-                    <div data-debug="{{ $index }}" class="panel panel-default" ng-repeat="group in nonEmptyEntityGroups" ng-if="(group.entities.length) > 0 && ($index % 3 == col)">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{ group.label }}</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div ng-repeat="entity in group.entities">
-                                <h3 class="entity-title" style="background-color: {{entity.value.background_color}}">{{ entity.label }}</h3>
-                                <ul class="list-group">
-                                    <li class="list-group-item" ng-repeat="(key, value) in entity.value" ng-if="key !== 'background_color'">
-                                        <span class="badge">{{ value.freq }}</span>
-                                        {{ key }}
-                                    </li>
-                                </ul>
+                    <div class="section-body">
+                        <div class="row">
+                            <div class="col-md-4" ng-repeat="col in [0, 1, 2]" data-debug="{{ $index }}">
+                                <div data-debug="{{ $index }}" class="panel panel-default" ng-repeat="group in nonEmptyEntityGroups" ng-if="(group.entities.length) > 0 && ($index % 3 == col)">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">{{ group.label }}</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div ng-repeat="entity in group.entities">
+                                            <h3 class="entity-title" style="background-color: {{entity.value.background_color}}">{{ entity.label }}</h3>
+                                            <ul class="list-group">
+                                                <li class="list-group-item" ng-repeat="(key, value) in entity.value" ng-if="key !== 'background_color'">
+                                                    <span class="badge">{{ value.freq }}</span>
+                                                    {{ key }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
         <div class="container" ng-show="analysisSucceeded!==undefined && !analysisSucceeded">

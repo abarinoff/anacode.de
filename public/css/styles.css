@@ -9,9 +9,20 @@ body {
     margin-bottom: 15px;
 }
 
+.container-under-navbar {
+    padding-top: 60px;
+}
+
 .section-title {
     border-bottom: 2px solid rgba(42, 62, 79, 0.4);
     color: #2a3e4f;
+    padding-bottom: 5px;
+}
+
+.section-body {
+    margin-top: 21px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .entity-title {
@@ -220,6 +231,10 @@ select.form-control {
 /*
   Analysis data response markup styles.
 */
+
+.highlighted-text {
+    margin-bottom: 20px;
+}
 
 .highlighted-text > span {
     padding-left: 3px;

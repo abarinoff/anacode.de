@@ -266,3 +266,35 @@ span[title~="BODYPART/"], span[title~="BODYPART"] {
     color: #B8B800 !important;
     background-color: rgb(255, 255, 153) !important;
 }
+
+/*
+    Media.
+*/
+
+/* xs */
+@media (max-width: 767px) {
+  .pull-right-xs {
+      float: right;
+  }
+}
+
+/* sm */
+@media (min-width: 768px) and (max-width:991px) {
+  .pull-right-sm {
+      float: right;
+  }
+}
+
+/* md */
+@media (min-width: 992px) and (max-width:1199px) {
+  .pull-right-md {
+      float: right;
+  }
+}
+
+/* lg */
+@media (min-width: 1200px) {
+  .pull-right-lg {
+      float: right;
+  }
+}

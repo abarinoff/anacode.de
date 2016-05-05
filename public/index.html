@@ -17,10 +17,10 @@
     <body ng-controller="DashboardController">
         <div class="alert alert-warning alert-dismissible hidden" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <div class="visible-xs">Extra Small</div>
-            <div class="visible-sm">Small</div>
-            <div class="visible-md">Medium</div>
-            <div class="visible-lg">Large</div>
+            <div class="visible-xs"><string>Extra Small</string></div>
+            <div class="visible-sm"><string>Small</string></div>
+            <div class="visible-md"><string>Medium</string></div>
+            <div class="visible-lg"><string>Large</string></div>
         </div>
 
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -36,9 +36,11 @@
                 <div class="row show-grid ">
                     <div class="col-md-12">
                         <div class="form-inline">
-                            <label class="form-control-static">Please input a text for analysis:</label>
+                            <div class="form-group">
+                                <label class="form-control-static">Please input a text for analysis:</label>
+                            </div>
 
-                            <div class="form-group pull-right">
+                            <div class="form-group pull-right-sm pull-right-md pull-right-lg">
                                 <label for="exampleSelector">No clue? Try these out:</label>
                                 <select id="exampleSelector" class="form-control"
                                         ng-model="selectedExample"

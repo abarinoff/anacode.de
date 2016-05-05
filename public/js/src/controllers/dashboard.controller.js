@@ -32,7 +32,9 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
                     });
                     $scope.industries = chunkIndustries(analysisData.industries[0]);
                     $scope.entityGroups = groupEntities(analysisData.entities);
+                    $scope.nonEmptyEntityGroups = nonEmptyGroups($scope.entityGroups);
                     console.log("Entities: ", $scope.entityGroups);
+                    console.log("Non Empty Groups: ", $scope.nonEmptyGroups);
 
                     $scope.analysisSucceeded = true;
                     $timeout($scope.renderChart, 0);
@@ -180,6 +182,14 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
             });
 
             return groups;
+        }
+
+        function nonEmptyGroups(groups) {
+            var nonEmptyGroups = _.pick(groups, function(value, key, object) {
+                return value.entities.length > 0;
+            });
+
+            return nonEmptyGroups;
         }
 
         function capitalizeFirstLetter(string) {

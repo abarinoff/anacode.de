@@ -2,6 +2,7 @@ body {
     padding-top: 50px;
     color: #70838d;
     background-color: rgb(229, 234, 238);
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 .section-title {
@@ -71,6 +72,32 @@ select.form-control {
     border-color: transparent;
 }
 
+.panel-title {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
 .form-control {
     color: #70838d;
+}
+
+.industry-probability {
+    font-weight: bold;
+}
+
+.industry-label {
+    text-transform: uppercase;
+    font-weight: lighter;
+}
+
+.list-group-item {
+    text-transform: uppercase;
+}
+
+.badge {
+    font-size: 14px;
+    border: none;
+    color: #70838d;
+    background-color: transparent;
+    font-weight: normal;
 }

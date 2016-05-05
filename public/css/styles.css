@@ -27,7 +27,11 @@ body {
 
 .entity-title {
     padding-left: 10px;
-    color: #70838d;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .navbar-default {

@@ -101,3 +101,60 @@ select.form-control {
     background-color: transparent;
     font-weight: normal;
 }
+
+/* Analysis data response markup styles. */
+
+/* TODO: Replace with classes. Do not use inline styling. */
+/*mix-blend-mode: overlay;*/
+
+
+/*
+times: {group: "contexts", label: "Times"},
+holidays: {group: "contexts", label: "Holidays"},
+*/
+
+.highlighted-text > span {
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 2px;
+}
+
+/* Red. */
+span[title~="PRODUCTVERSION/"], span[title~="PRODUCTVERSION"],
+span[title~="PRODUCTTYPE/"], span[title~="PRODUCTTYPE"],
+span[title~="PRODUCTMODEL/"], span[title~="PRODUCTMODEL"],
+span[title~="MEASURE/"], span[title~="MEASURE"],
+span[title~="FEATURE/"], span[title~="FEATURE"] {
+    color: rgb(218, 78, 46) !important;
+    background-color: rgb(253, 220, 206) !important;
+}
+
+/* Green. */
+span[title~="LOCATION/"], span[title~="LOCATION"],
+span[title~="INDUSTRY/"], span[title~="INDUSTRY"],
+span[title~="DATE/"], span[title~="DATE"],
+span[title~="TIME/"], span[title~="TIME"],
+span[title~="HOLIDAY/"], span[title~="HOLIDAY"] {
+    color: rgb(45, 186, 140) !important;
+    background-color: rgb(208, 242, 235) !important;
+}
+
+/* Blue. */
+span[title~="BRAND/"], span[title~="BRAND"] {
+    color: rgb(33, 172, 244) !important;
+    background-color: rgb(189, 240, 252) !important;
+}
+
+/* Purple. */
+span[title~="DOCUMENT/"], span[title~="DOCUMENT"],
+span[title~="LAW/"], span[title~="LAW"] {
+    color: rgb(112, 85, 221) !important;
+    background-color: rgb(220, 212, 247) !important;
+}
+
+/* Yellow. */
+span[title~="PERSON/"], span[title~="PERSON"],
+span[title~="BODYPART/"], span[title~="BODYPART"] {
+    color: #B8B800 !important;
+    background-color: rgb(255, 255, 153) !important;
+}

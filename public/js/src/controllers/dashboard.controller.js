@@ -10,6 +10,7 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
 
         $scope.clear = function() {
             $scope.selectedExample = null;
+            $scope.analysisSucceeded = undefined;
             $scope.clearChart();
             $scope.onSelectionUpdated();
         };

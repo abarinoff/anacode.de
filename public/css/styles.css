@@ -121,6 +121,8 @@ select.form-control {
 .panel-title {
     text-transform: uppercase;
     font-weight: bold;
+    color: #2a3e4f;
+    margin-top: 5px;
 }
 
 .form-control {
@@ -129,11 +131,15 @@ select.form-control {
 
 .industry-probability {
     font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .industry-label {
     text-transform: uppercase;
     font-weight: lighter;
+    margin-top: 0px;
+    margin-bottom: 30px;
 }
 
 .list-group-item {

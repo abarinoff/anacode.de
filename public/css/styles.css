@@ -1,11 +1,52 @@
 body {
     padding-top: 50px;
+    color: #70838d;
+    background-color: rgb(229, 234, 238);
 }
 
 .section-title {
-    border-bottom: 8px solid #57c4d0;
+    border-bottom: 2px solid rgba(42, 62, 79, 0.4);
+    color: #2a3e4f;
 }
 
 .entity-title {
-    border-bottom: 2px solid #57c4d0;
+    /*border-bottom: 2px solid #57c4d0;*/
+}
+
+.navbar-default {
+    background-color: rgb(242, 244, 246);
+    border-color: rgb(202, 209, 216);
+}
+
+.jumbotron {
+    background-color: transparent;
+}
+
+label {
+    color: #2a3e4f;
+}
+
+select.form-control {
+    color: #7d8995;
+}
+
+.btn-default {
+    border-radius: 3px;
+    color: #ffffff;
+    background-color: #bb0025;
+}
+
+.btn-destructive {
+    color: #bb0025;
+    background-color: rgb(242, 244, 246);
+}
+
+.panel-default {
+    border-radius: 2px;
+}
+
+.panel-default > .panel-heading {
+    color: #2a3e4f;
+    background-color: transparent;
+    border-color: transparent;
 }

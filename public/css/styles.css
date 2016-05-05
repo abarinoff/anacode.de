@@ -133,17 +133,25 @@ select.form-control {
     color: #70838d;
 }
 
-.industry-probability {
+.industry-probability, .sentiments-probability {
     font-weight: bold;
     margin-top: 0px;
     margin-bottom: 0px;
 }
 
-.industry-label {
+.industry-label, .sentiments-label {
     text-transform: uppercase;
     font-weight: lighter;
     margin-top: 0px;
     margin-bottom: 30px;
+}
+
+.sentiments-label-positive {
+    color: #1CA861;
+}
+
+.sentiments-label-negative {
+    color: #AB001C;
 }
 
 .list-group-item {

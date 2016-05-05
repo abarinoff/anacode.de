@@ -44,7 +44,7 @@
                     </div>
                     <div class="pull-right">
                         <button class="btn btn-default btn-action" ng-click="clear()">Clear</button>
-                        <button class="btn btn-primary btn-action" ng-click="submit()">Analyze</button>
+                        <button class="btn btn-primary btn-action spinner" ng-click="submit()">Analyze</button>
                     </div>
                 </form>
             </div>
@@ -112,13 +112,13 @@
             </div>
 
             <div class="row">
-                <div class="col-md-4" ng-repeat="entityGroup in entityGroups" ng-if="entityGroup.entities.length > 0">
-                    <div class="panel panel-default">
+                <div class="col-md-4" ng-repeat="col in [0, 1, 2]" data-debug="{{ $index }}">
+                    <div data-debug="{{ $index }}" class="panel panel-default" ng-repeat="group in nonEmptyEntityGroups" ng-if="(group.entities.length) > 0 && ($index % 3 == col)">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{ entityGroup.label }}</h3>
+                            <h3 class="panel-title">{{ group.label }}</h3>
                         </div>
                         <div class="panel-body">
-                            <div ng-repeat="entity in entityGroup.entities">
+                            <div ng-repeat="entity in group.entities">
                                 <h3 class="entity-title" style="background-color: {{entity.value.background_color}}">{{ entity.label }}</h3>
                                 <ul class="list-group">
                                     <li class="list-group-item" ng-repeat="(key, value) in entity.value" ng-if="key !== 'background_color'">

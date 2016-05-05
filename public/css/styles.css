@@ -5,6 +5,10 @@ body {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
+.show-grid {
+    margin-bottom: 15px;
+}
+
 .section-title {
     border-bottom: 2px solid rgba(42, 62, 79, 0.4);
     color: #2a3e4f;

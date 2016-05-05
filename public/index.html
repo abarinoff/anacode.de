@@ -15,6 +15,7 @@
     </head>
 
     <body ng-controller="DashboardController">
+
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -25,38 +26,39 @@
 
         <div class="jumbotron">
             <div class="container">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="col-md-4">Please input a text for analysis:</label>
-                        <div class="col-sm-8">
+                <div class="row show-grid ">
+                    <div class="col-md-12">
+                        <div class="form-inline">
+                            <label class="form-control-static">Please input a text for analysis:</label>
 
-                            <div class="form-inline">
-                                <div class="form-group row pull-right">
-                                    <div class="col-md-12">
-                                        <label for="exampleSelector">No clue? Try these out:</label>
-                                        <select id="exampleSelector" class="form-control"
-                                                ng-model="selectedExample"
-                                                ng-options="example.name for example in examples"
-                                                ng-change="onSelectionUpdated()">
-                                        </select>
-                                    </div>
+                            <div class="form-group pull-right">
+                                <label for="exampleSelector">No clue? Try these out:</label>
+                                <select id="exampleSelector" class="form-control"
+                                        ng-model="selectedExample"
+                                        ng-options="example.name for example in examples"
+                                        ng-change="onSelectionUpdated()">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row show-grid ">
+                    <div class="col-md-12">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <textarea id="exampleText" class="form-control" rows="8"></textarea>
                                 </div>
                             </div>
 
-                        </div>
+                            <div class="pull-right">
+                                <button class="btn btn-default btn-action" ng-click="clear()">Clear</button>
+                                <button id="btn-analyze" class="btn btn-primary btn-action" ng-click="submit()">Analyze</button>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <textarea id="exampleText" class="form-control" rows="8"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="pull-right">
-                        <button class="btn btn-default btn-action" ng-click="clear()">Clear</button>
-                        <button id="btn-analyze" class="btn btn-primary btn-action" ng-click="submit()">Analyze</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
 

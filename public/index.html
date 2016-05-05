@@ -119,7 +119,7 @@
                         </div>
                         <div class="panel-body">
                             <div ng-repeat="entity in entityGroup.entities">
-                                <h3 class="entity-title" style="border-bottom-color: {{entity.value.background_color}}">{{ entity.label }}</h3>
+                                <h3 class="entity-title" style="background-color:rgb(229, 234, 238); color: {{entity.value.background_color}}">{{ entity.label }}</h3>
                                 <ul class="list-group">
                                     <li class="list-group-item" ng-repeat="(key, value) in entity.value" ng-if="key !== 'background_color'">
                                         <span class="badge">{{ value.freq }}</span>

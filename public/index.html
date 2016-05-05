@@ -29,19 +29,29 @@
                     <div class="form-group">
                         <label class="col-md-4">Please input a text for analysis:</label>
                         <div class="col-sm-8">
-                            <label for="exampleSelector">No clue? Try these out:</label>
-                            <select id="exampleSelector" class="form-control"
-                                    ng-model="selectedExample"
-                                    ng-options="example.name for example in examples"
-                                    ng-change="onSelectionUpdated()">
-                            </select>
+
+                            <div class="form-inline">
+                                <div class="form-group row pull-right">
+                                    <div class="col-md-12">
+                                        <label for="exampleSelector">No clue? Try these out:</label>
+                                        <select id="exampleSelector" class="form-control"
+                                                ng-model="selectedExample"
+                                                ng-options="example.name for example in examples"
+                                                ng-change="onSelectionUpdated()">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="col-sm-12">
                             <textarea id="exampleText" class="form-control" rows="8"></textarea>
                         </div>
                     </div>
+
                     <div class="pull-right">
                         <button class="btn btn-default btn-action" ng-click="clear()">Clear</button>
                         <button id="btn-analyze" class="btn btn-primary btn-action" ng-click="submit()">Analyze</button>

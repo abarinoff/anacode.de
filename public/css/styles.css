@@ -27,7 +27,11 @@ body {
 
 .entity-title {
     padding-left: 10px;
-    color: #70838d;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .navbar-default {
@@ -35,8 +39,8 @@ body {
     border-color: rgb(202, 209, 216);
 }
 
-.jumbotron {
-    background-color: transparent;
+.navbar-brand > img {
+    margin-top: -5px;
 }
 
 label {
@@ -121,19 +125,45 @@ select.form-control {
 .panel-title {
     text-transform: uppercase;
     font-weight: bold;
+    color: #2a3e4f;
+    margin-top: 5px;
 }
 
 .form-control {
     color: #70838d;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
-.industry-probability {
+select.form-control {
+    border-color: #ecedef;
+    border-radius: 3px;
+}
+
+text-area.form-control {
+    border-color: #dee2e5;
+    border-radius: 3px;
+}
+
+.industry-probability, .sentiments-probability {
     font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
-.industry-label {
+.industry-label, .sentiments-label {
     text-transform: uppercase;
     font-weight: lighter;
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+.sentiments-label-positive {
+    color: #1CA861;
+}
+
+.sentiments-label-negative {
+    color: #AB001C;
 }
 
 .list-group-item {

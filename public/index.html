@@ -44,7 +44,7 @@
                     </div>
                     <div class="pull-right">
                         <button class="btn btn-default btn-action" ng-click="clear()">Clear</button>
-                        <button class="btn btn-primary btn-action spinner" ng-click="submit()">Analyze</button>
+                        <button id="btn-analyze" class="btn btn-primary btn-action" ng-click="submit()">Analyze</button>
                     </div>
                 </form>
             </div>
@@ -136,6 +136,9 @@
         <div class="container" ng-show="analysisSucceeded!==undefined && !analysisSucceeded">
             <div class="alert alert-danger text-center" role="alert">Error occurred during text analysis. Please check provided value and try again.</div>
         </div>
+
+        <!--  Remove 'hidden' class to disable UI. -->
+        <div class="disabling-overlay hidden"></div>
 
         <script src="js/libs/jquery.min.js"></script>
         <script src="js/libs/underscore.min.js"></script>

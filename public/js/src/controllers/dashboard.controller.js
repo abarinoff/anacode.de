@@ -2,6 +2,8 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
     function (_, $, $scope, $sce, $timeout, AnalysisDataModel) {
 
         $scope.submit = function() {
+            $("#btn-analyze").addClass("spinner");
+            $(".disabling-overlay").removeClass("hidden");
             $scope.clearChart();
             $scope.getAnalysisData();
         };
@@ -17,6 +19,8 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
 
             AnalysisDataModel.get({text: textValue}, function (response) {
                 console.log("Response retrieved: ", response);
+                $("#btn-analyze").removeClass("spinner");
+                $(".disabling-overlay").addClass("hidden");
                 if(response.errors) {
                     $scope.analysisSucceeded = false;
                 } else {

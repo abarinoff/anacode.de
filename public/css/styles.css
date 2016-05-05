@@ -273,6 +273,7 @@ text-area.form-control {
 }
 
 /* Red. */
+/*
 span[title~="PRODUCTVERSION/"], span[title~="PRODUCTVERSION"],
 span[title~="PRODUCTTYPE/"], span[title~="PRODUCTTYPE"],
 span[title~="PRODUCTMODEL/"], span[title~="PRODUCTMODEL"],
@@ -281,8 +282,10 @@ span[title~="FEATURE/"], span[title~="FEATURE"] {
     color: rgb(218, 78, 46) !important;
     background-color: rgb(253, 220, 206) !important;
 }
+*/
 
 /* Green. */
+/*
 span[title~="LOCATION/"], span[title~="LOCATION"],
 span[title~="INDUSTRY/"], span[title~="INDUSTRY"],
 span[title~="DATE/"], span[title~="DATE"],
@@ -291,26 +294,33 @@ span[title~="HOLIDAY/"], span[title~="HOLIDAY"] {
     color: rgb(45, 186, 140) !important;
     background-color: rgb(208, 242, 235) !important;
 }
+*/
 
 /* Blue. */
+/*
 span[title~="BRAND/"], span[title~="BRAND"] {
     color: rgb(33, 172, 244) !important;
     background-color: rgb(189, 240, 252) !important;
 }
+*/
 
 /* Purple. */
+/*
 span[title~="DOCUMENT/"], span[title~="DOCUMENT"],
 span[title~="LAW/"], span[title~="LAW"] {
     color: rgb(112, 85, 221) !important;
     background-color: rgb(220, 212, 247) !important;
 }
+*/
 
 /* Yellow. */
+/*
 span[title~="PERSON/"], span[title~="PERSON"],
 span[title~="BODYPART/"], span[title~="BODYPART"] {
     color: #B8B800 !important;
     background-color: rgb(255, 255, 153) !important;
 }
+*/
 
 /*
     Media.
@@ -342,4 +352,8 @@ span[title~="BODYPART/"], span[title~="BODYPART"] {
   .pull-right-lg {
       float: right;
   }
+}
+
+.ng-cloak {
+    display:none;
 }

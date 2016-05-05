@@ -43,10 +43,15 @@ select.form-control {
 
 .panel-default {
     border-radius: 2px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
 }
 
 .panel-default > .panel-heading {
     color: #2a3e4f;
     background-color: transparent;
     border-color: transparent;
+}
+
+.form-control {
+    color: #70838d;
 }

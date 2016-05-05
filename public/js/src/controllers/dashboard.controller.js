@@ -49,7 +49,12 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
         };
 
         $scope.renderChart = function() {
-            Morris.Donut({element: "sentiment-analysis", data: $scope.sentiments, formatter: function(value) {return value + "%"}});
+            Morris.Donut({
+              element: "sentiment-analysis",
+              data: $scope.sentiments,
+              colors: ["#1CA861", "#AB001C"],
+              formatter: function(value) { return value }
+            });
         };
 
         $scope.examples = [

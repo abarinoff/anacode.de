@@ -30,15 +30,34 @@ select.form-control {
     color: #7d8995;
 }
 
-.btn-default {
-    border-radius: 3px;
+.btn-primary {
     color: #ffffff;
     background-color: #bb0025;
+    border-color: transparent;
 }
 
-.btn-destructive {
-    color: #bb0025;
-    background-color: rgb(242, 244, 246);
+.btn-primary:hover {
+    color: #ffffff;
+    background-color: #e0002d;
+    border-color: transparent;
+}
+
+.btn-primary.focus, .btn-primary:focus {
+    color: #ffffff;
+    background-color: #e0002d;
+    border-color: #660014;
+}
+
+.btn-primary.active, .btn-primary:active {
+    color: #ffffff;
+    background-color: #8f001d;
+    border-color: #660014;
+}
+
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover {
+    color: #ffffff;
+    background-color: #8f001d;
+    border-color: #660014;
 }
 
 .panel-default {

@@ -39,8 +39,8 @@ body {
     border-color: rgb(202, 209, 216);
 }
 
-.jumbotron {
-    background-color: transparent;
+.navbar-brand > img {
+    margin-top: -5px;
 }
 
 label {

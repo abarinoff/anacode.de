@@ -122,6 +122,14 @@ select.form-control {
 
 .list-group-item {
     text-transform: uppercase;
+    border-color: rgba(42, 62, 79, 0.2);
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+.list-group-item:first-child,
+.list-group-item:last-child {
+    border-radius: 0px;
 }
 
 .badge {

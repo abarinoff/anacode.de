@@ -1,6 +1,6 @@
 body {
     padding-top: 50px;
-    color: #70838d;
+    color: #2a3e4f;
     background-color: rgb(229, 234, 238);
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
@@ -15,7 +15,6 @@ body {
 
 .section-title {
     border-bottom: 2px solid rgba(42, 62, 79, 0.4);
-    color: #2a3e4f;
     padding-bottom: 5px;
 }
 
@@ -26,10 +25,8 @@ body {
 }
 
 .entity-title {
-    padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
-    color: black;
     margin-top: 0px;
     margin-bottom: 0px;
 }
@@ -41,14 +38,6 @@ body {
 
 .navbar-brand > img {
     margin-top: -5px;
-}
-
-label {
-    color: #2a3e4f;
-}
-
-select.form-control {
-    color: #7d8995;
 }
 
 .btn {
@@ -112,12 +101,17 @@ select.form-control {
 }
 
 .panel-default {
+    color: #70838d;
     border-radius: 2px;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
 }
 
+.panel-entity-group {
+    border-left-width: 5px;
+}
+
 .panel-default > .panel-heading {
-    color: #2a3e4f;
+    color: #70838d;
     background-color: transparent;
     border-color: transparent;
 }
@@ -125,7 +119,7 @@ select.form-control {
 .panel-title {
     text-transform: uppercase;
     font-weight: bold;
-    color: #2a3e4f;
+    color: inherit;
     margin-top: 5px;
 }
 
@@ -167,10 +161,11 @@ text-area.form-control {
 }
 
 .list-group-item {
-    text-transform: uppercase;
     border-color: rgba(42, 62, 79, 0.2);
     border-left-color: transparent;
     border-right-color: transparent;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .list-group-item:first-child,
@@ -273,6 +268,7 @@ text-area.form-control {
 }
 
 /* Red. */
+/*
 span[title~="PRODUCTVERSION/"], span[title~="PRODUCTVERSION"],
 span[title~="PRODUCTTYPE/"], span[title~="PRODUCTTYPE"],
 span[title~="PRODUCTMODEL/"], span[title~="PRODUCTMODEL"],
@@ -281,8 +277,10 @@ span[title~="FEATURE/"], span[title~="FEATURE"] {
     color: rgb(218, 78, 46) !important;
     background-color: rgb(253, 220, 206) !important;
 }
+*/
 
 /* Green. */
+/*
 span[title~="LOCATION/"], span[title~="LOCATION"],
 span[title~="INDUSTRY/"], span[title~="INDUSTRY"],
 span[title~="DATE/"], span[title~="DATE"],
@@ -291,26 +289,33 @@ span[title~="HOLIDAY/"], span[title~="HOLIDAY"] {
     color: rgb(45, 186, 140) !important;
     background-color: rgb(208, 242, 235) !important;
 }
+*/
 
 /* Blue. */
+/*
 span[title~="BRAND/"], span[title~="BRAND"] {
     color: rgb(33, 172, 244) !important;
     background-color: rgb(189, 240, 252) !important;
 }
+*/
 
 /* Purple. */
+/*
 span[title~="DOCUMENT/"], span[title~="DOCUMENT"],
 span[title~="LAW/"], span[title~="LAW"] {
     color: rgb(112, 85, 221) !important;
     background-color: rgb(220, 212, 247) !important;
 }
+*/
 
 /* Yellow. */
+/*
 span[title~="PERSON/"], span[title~="PERSON"],
 span[title~="BODYPART/"], span[title~="BODYPART"] {
     color: #B8B800 !important;
     background-color: rgb(255, 255, 153) !important;
 }
+*/
 
 /*
     Media.
@@ -332,14 +337,23 @@ span[title~="BODYPART/"], span[title~="BODYPART"] {
 
 /* md */
 @media (min-width: 992px) and (max-width:1199px) {
-  .pull-right-md {
+    .pull-right-md {
       float: right;
-  }
+    }
 }
 
 /* lg */
 @media (min-width: 1200px) {
-  .pull-right-lg {
+    .pull-right-lg {
       float: right;
-  }
+    }
+}
+
+.ng-cloak {
+    display:none;
+}
+
+.col-industry {
+    padding-right: 5px;
+    padding-left: 5px;
 }

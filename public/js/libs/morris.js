@@ -1664,7 +1664,7 @@ Licensed under the BSD-2-Clause License.
           if (_this.timeoutId != null) {
             window.clearTimeout(_this.timeoutId);
           }
-          return _this.timeoutId = window.setTimeout(_this.resizeHandler, 100);
+          return _this.timeoutId = window.setTimeout(_this.resizeHandler, 500);
         });
       }
       this.setData(options.data);

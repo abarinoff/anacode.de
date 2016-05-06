@@ -13,7 +13,7 @@ var anacode = angular.module('anacode', ["anacodeModels", "anacodeControllers", 
                 $industries.removeAttr('style');
 
                 if (viewport.is('md') || viewport.is('lg')) {
-                    var height = Math.max($sentiments.height(), $industries.height());
+                    var height = $industries.height();
 
                     $sentiments.height(height);
                     $industries.height(height);

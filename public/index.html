@@ -106,12 +106,12 @@
                                         <!--  Legend. -->
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <h2 class="sentiments-probability text-center">{{ sentiments[0].value }}</h2>
-                                                <h2 class="sentiments-label sentiments-label-positive text-center">Positive</h2>
+                                                <h3 class="sentiments-probability text-center">{{ sentiments[0].value }}</h3>
+                                                <h3 class="sentiments-label sentiments-label-positive text-center">Positive</h3>
                                             </div>
                                             <div class="col-xs-6">
-                                                <h2 class="sentiments-probability text-center">{{ sentiments[1].value }}</h2>
-                                                <h2 class="sentiments-label sentiments-label-negative text-center">Negative</h2>
+                                                <h3 class="sentiments-probability text-center">{{ sentiments[1].value }}</h3>
+                                                <h3 class="sentiments-label sentiments-label-negative text-center">Negative</h3>
                                             </div>
                                         </div>
                                         <!-- Chart. -->
@@ -129,11 +129,11 @@
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">
-                                            <div class="col-md-4" ng-repeat="industriesColumn in industries">
-                                                <h2 class="industry-probability text-center">{{ industriesColumn[0].probability }}</h2>
-                                                <h2 class="industry-label text-center">{{ industriesColumn[0].label }}</h2>
+                                            <div class="col-md-4 col-industry" ng-repeat="industriesColumn in industries">
+                                                <h3 class="industry-probability text-center">{{ industriesColumn[0].probability }}</h3>
+                                                <h3 class="industry-label text-center">{{ industriesColumn[0].label }}</h3>
                                                 <ul class="list-group">
-                                                    <li class="list-group-item" ng-repeat="industry in industriesColumn" ng-if="$index >= 1">
+                                                    <li class="list-group-item text-uppercase" ng-repeat="industry in industriesColumn" ng-if="$index >= 1">
                                                         <span class="badge">{{ industry.probability }}</span>
                                                         {{ industry.label }}
                                                     </li>
@@ -155,13 +155,15 @@
                     <div class="section-body">
                         <div class="row">
                             <div class="col-md-4" ng-repeat="col in [0, 1, 2]" data-debug="{{ $index }}">
-                                <div data-debug="{{ $index }}" class="panel panel-default" ng-repeat="group in nonEmptyEntityGroups" ng-if="(group.entities.length) > 0 && ($index % 3 == col)">
+                                <div data-debug="{{ $index }}" class="panel panel-default panel-entity-group"
+                                     style="border-left-color: {{group.entities[0].value.background_color}}"
+                                     ng-repeat="group in nonEmptyEntityGroups" ng-if="(group.entities.length) > 0 && ($index % 3 == col)">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">{{ group.label }}</h3>
                                     </div>
                                     <div class="panel-body">
                                         <div ng-repeat="entity in group.entities">
-                                            <h3 class="entity-title" style="background-color: {{entity.value.background_color}}">{{ entity.label }}</h3>
+                                            <h3 class="entity-title">{{ entity.label }}</h3>
                                             <ul class="list-group">
                                                 <li class="list-group-item" ng-repeat="(key, value) in entity.value" ng-if="key !== 'background_color'">
                                                     <span class="badge">{{ value.freq }}</span>

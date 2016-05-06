@@ -39,7 +39,7 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
                     $scope.entityGroups = groupEntities(analysisData.entities);
                     $scope.nonEmptyEntityGroups = nonEmptyGroups($scope.entityGroups);
                     console.log("Entities: ", $scope.entityGroups);
-                    console.log("Non Empty Groups: ", $scope.nonEmptyGroups);
+                    console.log("Non Empty Groups: ", $scope.nonEmptyEntityGroups);
 
                     $scope.analysisSucceeded = true;
                     $timeout($scope.renderChart, 0);
@@ -57,10 +57,11 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
 
         $scope.renderChart = function() {
             Morris.Donut({
-              element: "sentiment-analysis",
-              data: $scope.sentiments,
-              colors: ["#1CA861", "#AB001C"],
-              formatter: function(value) { return value }
+                element: "sentiment-analysis",
+                data: $scope.sentiments,
+                colors: ["#1CA861", "#AB001C"],
+                formatter: function(value) { return value },
+                resize: true
             });
         };
 
@@ -148,7 +149,6 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
                 features: {group: "products", label: "Product features"},
 
                 brands: {group: "companies", label: "Brands"},
-                industrys: {group: "companies", label: "Industries"},
 
                 persons: {group: "people", label: "Persons"},
 
@@ -156,6 +156,7 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
                 dates: {group: "contexts", label: "Dates"},
                 times: {group: "contexts", label: "Times"},
                 holidays: {group: "contexts", label: "Holidays"},
+                industrys: {group: "contexts", label: "Industries"},
 
                 laws: {group: "other", label: "Laws"},
                 documents: {group: "other", label: "Documents"},
@@ -164,7 +165,7 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
 
             var groups = {
                 products: {label: "Products", entities: []},
-                companies: {label: "Organizations and companies", entities: []},
+                companies: {label: "Organizations", entities: []},
                 people: {label: "People", entities: []},
                 contexts: {label: "Contexts", entities: []},
                 other: {label: "Other", entities: []}

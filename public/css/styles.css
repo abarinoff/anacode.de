@@ -209,7 +209,7 @@ text-area.form-control {
     margin-left: 10px;
     padding: 0;
     border: 1px solid #fff;
-    border-top-color: #bb0025;
+    border-top-color: transparent;
     border-radius: 50%;
     vertical-align: middle;
     content: '';

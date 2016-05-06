@@ -59,7 +59,8 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
               element: "sentiment-analysis",
               data: $scope.sentiments,
               colors: ["#1CA861", "#AB001C"],
-              formatter: function(value) { return value }
+              formatter: function(value) { return value },
+              resize: true
             });
         };
 

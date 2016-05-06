@@ -291,6 +291,7 @@ text-area.form-control {
     padding-left: 3px;
     padding-right: 3px;
     border-radius: 2px;
+    white-space: nowrap;
 }
 
 /* Red. */

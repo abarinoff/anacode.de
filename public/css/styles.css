@@ -192,6 +192,11 @@ text-area.form-control {
      background: rgba(255, 255, 255, 0.7);
 }
 
+.sentiment-analysis {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 /*
     Rotating glyphicon styles (loading indicator).
 */

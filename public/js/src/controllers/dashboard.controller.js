@@ -58,8 +58,11 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
         $scope.renderChart = function() {
             Morris.Donut({
                 element: "sentiment-analysis",
-                data: $scope.sentiments,
-                colors: ["#1CA861", "#AB001C"],
+                data: $scope.sentiments.reverse(),
+                colors: ["#AB001C", "#1CA861"],
+                labelColor: "#70838d",
+                topLabel: "415",
+                bottomLabel: "WORDS",
                 formatter: function(value) { return value },
                 resize: true
             });

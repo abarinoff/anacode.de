@@ -108,6 +108,8 @@ body {
 
 .panel-entity-group {
     border-left-width: 5px;
+    border-top: none;
+    border-bottom: none;
 }
 
 .panel-default > .panel-heading {

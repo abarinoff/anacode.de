@@ -139,6 +139,11 @@ text-area.form-control {
     border-radius: 3px;
 }
 
+.industries {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .industry-probability, .sentiments-probability {
     font-weight: bold;
     margin-top: 0px;

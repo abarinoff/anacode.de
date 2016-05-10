@@ -1,5 +1,4 @@
-var anacode = angular.module('anacode', ["anacodeModels", "anacodeControllers", "anacodeServices"]);
-
+var anacode = angular.module('anacode', ["anacodeModels", "anacodeControllers", "anacodeServices", "anacodeFilters"]);
 
 (function($, viewport) {
     $(document).ready(function() {

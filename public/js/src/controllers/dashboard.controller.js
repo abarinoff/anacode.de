@@ -1,6 +1,12 @@
 angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardController", ["_", "$", "$scope", "$sce", "$timeout", "AnalysisDataModel",
     function (_, $, $scope, $sce, $timeout, AnalysisDataModel) {
 
+        $scope.initialize = function() {
+            $scope.selectedExample = $scope.examples[0];
+            $scope.onSelectionUpdated();
+            $scope.submit();
+        };
+
         $scope.submit = function() {
             $("#btn-analyze").addClass("spinner");
             $(".disabling-overlay").removeClass("hidden");
@@ -29,6 +35,7 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
 
                     $scope.highlightedText = $sce.trustAsHtml(analysisData.markup);
                     $scope.summary = analysisData.summary;
+                    $scope.wordsCount = analysisData.word_count;
                     $scope.sentiments = _.map(analysisData.sentiment[0], function(sentiment) {
                         return {
                             label: sentiment.label,
@@ -61,7 +68,7 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
                 data: $scope.sentiments.reverse(),
                 colors: ["#AB001C", "#1CA861"],
                 labelColor: "#70838d",
-                topLabel: "415",
+                topLabel: $scope.wordsCount,
                 bottomLabel: "WORDS",
                 formatter: function(value) { return value },
                 resize: true

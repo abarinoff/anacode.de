@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
 
-    <body class="ng-cloak" ng-controller="DashboardController">
+    <body class="ng-cloak" ng-controller="DashboardController" ng-init="initialize()">
         <div class="alert alert-warning alert-dismissible hidden" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <div class="visible-xs"><string>Extra Small</string></div>
@@ -107,11 +107,11 @@
                                         <!--  Legend. -->
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <h3 class="sentiments-probability text-center">{{ sentiments[1].value }}</h3>
+                                                <h3 class="sentiments-probability text-center">{{ sentiments[1].value | percentage:2 }}</h3>
                                                 <h3 class="sentiments-label sentiments-label-positive text-center">Positive</h3>
                                             </div>
                                             <div class="col-xs-6">
-                                                <h3 class="sentiments-probability text-center">{{ sentiments[0].value }}</h3>
+                                                <h3 class="sentiments-probability text-center">{{ sentiments[0].value | percentage:2 }}</h3>
                                                 <h3 class="sentiments-label sentiments-label-negative text-center">Negative</h3>
                                             </div>
                                         </div>
@@ -134,11 +134,11 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-4 col-industry" ng-repeat="industriesColumn in industries">
-                                                <h3 class="industry-probability text-center">{{ industriesColumn[0].probability }}</h3>
+                                                <h3 class="industry-probability text-center">{{ industriesColumn[0].probability | percentage:2 }}</h3>
                                                 <h3 class="industry-label text-center">{{ industriesColumn[0].label }}</h3>
                                                 <ul class="list-group">
                                                     <li class="list-group-item text-uppercase" ng-repeat="industry in industriesColumn" ng-if="$index >= 1">
-                                                        <span class="badge">{{ industry.probability }}</span>
+                                                        <span class="badge">{{ industry.probability | percentage:2 }}</span>
                                                         {{ industry.label }}
                                                     </li>
                                                 </ul>
@@ -212,6 +212,9 @@
         <script src="js/src/services/services.js"></script>
         <script src="js/src/services/jquery.service.js"></script>
         <script src="js/src/services/underscore.service.js"></script>
+
+        <script src="js/src/filters/filters.js"></script>
+        <script src="js/src/filters/percentage.filter.js"></script>
 
         <script src="js/src/application.js"></script>
     </body>

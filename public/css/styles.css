@@ -285,6 +285,7 @@ text-area.form-control {
 
 .highlighted-text {
     margin-bottom: 20px;
+    line-height: 22px;
 }
 
 .highlighted-text > span {

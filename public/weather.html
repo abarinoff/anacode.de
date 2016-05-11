@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="anacode">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Weather Forecast - test task</title>
+
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/morris.css">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+
+    <body class="ng-cloak" ng-controller="WeatherDashboardController" ng-init="initialize()">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Weather Forecast</a>
+                </div>
+            </div>
+        </nav>
+
+        <!--  Form. -->
+        <div class="container container-under-navbar">
+            <div class="row show-grid ">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label for="exampleSelector">Select city:</label>
+                            <select id="exampleSelector" class="form-control"
+                                    ng-model="selectedCity"
+                                    ng-options="city.name for city in cities"
+                                    ng-change="submit()">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title">Temperature</h2>
+                    <div class="section-body">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="weather-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title">Additional Data</h2>
+                    <div class="section-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="panel panel-default panel-entity-group" style="border-left-color: #FFA000">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Weather Conditions</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="list-group">
+                                            <li class="list-group-item" ng-repeat="item in conditionsData">
+                                                <span class="badge">{{ item.value }}</span>
+                                                {{ item.label }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="panel panel-default panel-entity-group" style="border-left-color: #8BC34A">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Humidity</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="list-group">
+                                            <li class="list-group-item" ng-repeat="item in humidityData">
+                                                <span class="badge">{{ item.value }}%</span>
+                                                {{ item.label }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="panel panel-default panel-entity-group" style="border-left-color: #673AB7">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Wind Speed</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="list-group">
+                                            <li class="list-group-item" ng-repeat="item in windData">
+                                                <span class="badge">{{ item.value }} m/s</span>
+                                                {{ item.label }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container" ng-show="analysisSucceeded!==undefined && !analysisSucceeded">
+            <div class="alert alert-danger text-center" role="alert">Error occurred during text analysis. Please check provided value and try again.</div>
+        </div>
+
+        <!--  Remove 'hidden' class to disable UI. -->
+        <div class="disabling-overlay hidden"></div>
+
+        <script src="js/libs/jquery.min.js"></script>
+        <script src="js/libs/underscore.min.js"></script>
+        <script src="js/libs/bootstrap.min.js"></script>
+        <script src="js/libs/bootstrap-toolkit.min.js"></script>
+        <script src="js/libs/raphael.min.js"></script>
+        <script src="js/libs/morris.js"></script>
+        <script src="js/libs/angular.min.js"></script>
+        <script src="js/libs/angular.resource.min.js"></script>
+        <script src="js/libs/angular.sanitize.min.js"></script>
+
+        <script src="js/src/models/models.js"></script>
+        <script src="js/src/models/analysis.data.model.js"></script>
+        <script src="js/src/models/weather.data.model.js"></script>
+
+        <script src="js/src/controllers/controllers.js"></script>
+        <script src="js/src/controllers/dashboard.controller.js"></script>
+        <script src="js/src/controllers/weather.dashboard.controller.js"></script>
+
+        <script src="js/src/services/services.js"></script>
+        <script src="js/src/services/jquery.service.js"></script>
+        <script src="js/src/services/underscore.service.js"></script>
+
+        <script src="js/src/filters/filters.js"></script>
+        <script src="js/src/filters/percentage.filter.js"></script>
+
+        <script src="js/src/application.js"></script>
+    </body>
+</html>

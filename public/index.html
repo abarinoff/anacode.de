@@ -44,7 +44,7 @@
                             <label for="exampleSelector">No clue? Try these out:</label>
                             <select id="exampleSelector" class="form-control"
                                     ng-model="selectedExample"
-                                    ng-options="example.name for example in examples"
+                                    ng-options="example.title for example in examples"
                                     ng-change="onSelectionUpdated()">
                             </select>
                         </div>
@@ -205,6 +205,7 @@
 
         <script src="js/src/models/models.js"></script>
         <script src="js/src/models/analysis.data.model.js"></script>
+        <script src="js/src/models/example.model.js"></script>
 
         <script src="js/src/controllers/controllers.js"></script>
         <script src="js/src/controllers/dashboard.controller.js"></script>

@@ -22,7 +22,7 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
         $scope.getExamples = function() {
             $(".disabling-overlay").removeClass("hidden");
 
-            ExampleModel.get({text: "this is a test text"}, function (response) {
+            ExampleModel.get({}, function (response) {
                 $(".disabling-overlay").addClass("hidden");
                 $scope.examples = response.data;
                 console.log("Examples: ", $scope.examples);

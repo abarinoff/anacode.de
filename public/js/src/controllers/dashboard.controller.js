@@ -1,8 +1,30 @@
-angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardController", ["_", "$", "$scope", "$sce", "$timeout", "AnalysisDataModel", "ExampleModel",
-    function (_, $, $scope, $sce, $timeout, AnalysisDataModel, ExampleModel) {
+angular.module("anacodeControllers").controller("DashboardController", ["_", "$", "$q", "$scope", "$sce", "$cookies",
+    "$timeout", "ExampleModel", "AnalysisDataModel", "SentimentDataModel",
+    function (_, $, $q, $scope, $sce, $cookies, $timeout, ExampleModel, AnalysisDataModel, SentimentDataModel) {
 
         $scope.initialize = function() {
+            _.each(["syndepsCollapsed", "summaryCollapsed",
+                "categorizationCollapsed", "entitiesCollapsed"], $scope.readToggle);
             $scope.getExamples();
+        };
+
+        $scope.readToggle = function(toggleName) {
+            var cookieValue = $cookies.get(toggleName);
+            $scope[toggleName] = cookieValue ? cookieValue === "true" : false;
+            console.log(toggleName + ": ", $scope[toggleName]);
+        };
+
+        $scope.toggle = function(toggleName) {
+            $scope[toggleName] = !$scope[toggleName];
+            $cookies.put(toggleName, $scope[toggleName]);
+        };
+
+        $scope.toggleCategorization = function() {
+            $scope.toggle("categorizationCollapsed");
+            if(!$scope.categorizationCollapsed) {
+                $scope.clearChart();
+                $timeout($scope.renderChart, 100);
+            }
         };
 
         $scope.submit = function() {
@@ -25,7 +47,6 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
             ExampleModel.get({}, function (response) {
                 $(".disabling-overlay").addClass("hidden");
                 $scope.examples = response.data;
-                console.log("Examples: ", $scope.examples);
                 $scope.selectedExample = $scope.examples[0];
                 $scope.onSelectionUpdated();
                 $scope.submit();
@@ -35,34 +56,67 @@ angular.module("anacodeControllers", ["ngSanitize"]).controller("DashboardContro
         $scope.getAnalysisData = function() {
             var textValue = $("#exampleText").val();
 
-            AnalysisDataModel.get({text: textValue}, function (response) {
-                console.log("Response retrieved: ", response);
-                $("#btn-analyze").removeClass("spinner");
-                $(".disabling-overlay").addClass("hidden");
-                if(response.errors) {
-                    $scope.analysisSucceeded = false;
-                } else {
-                    var analysisData = response.data;
+            $q.all([AnalysisDataModel.get({text: textValue}).$promise, SentimentDataModel.get({text: textValue}).$promise])
+                .then(function (response) {
+                    var analysisData = response[0], sentimentData = response[1];
 
-                    $scope.highlightedText = $sce.trustAsHtml(analysisData.markup);
-                    $scope.summary = analysisData.summary;
-                    $scope.wordsCount = analysisData.word_count;
-                    $scope.sentiments = _.map(analysisData.sentiment[0], function(sentiment) {
+                    $("#btn-analyze").removeClass("spinner");
+                    $(".disabling-overlay").addClass("hidden");
+                    if(analysisData.errors || sentimentData.errors) {
+                        $scope.analysisSucceeded = false;
+                    } else {
+                        processAnalysisData(analysisData);
+                        processSentimentData(sentimentData);
+                    }
+                });
+
+            function processAnalysisData(response) {
+                var analysisData = response.data;
+
+                $scope.highlightedText = $sce.trustAsHtml(analysisData.markup);
+                $scope.summary = analysisData.summary;
+                $scope.wordsCount = analysisData.word_count;
+                $scope.sentiments = _.map(analysisData.sentiment[0], function(sentiment) {
+                    return {
+                        label: sentiment.label,
+                        value: sentiment.probability
+                    }
+                });
+                $scope.industries = chunkIndustries(analysisData.industries[0]);
+                $scope.entityGroups = groupEntities(analysisData.entities);
+                $scope.nonEmptyEntityGroups = nonEmptyGroups($scope.entityGroups);
+
+                $scope.analysisSucceeded = true;
+                $timeout($scope.renderChart, 0);
+            }
+
+            function processSentimentData(response) {
+                $scope.sentences = _.map(response.data, function(sentence) {
+                    return _.map(sentence.chunks, function(chunk, index) {
+                        var dependency = _.findWhere(sentence.dependencies, {to: index});
+                        var parent = _.isUndefined(dependency) ? null : dependency.from;
+                        var label = _.isUndefined(dependency) ? "" : dependency.label;
+
                         return {
-                            label: sentiment.label,
-                            value: sentiment.probability
+                            "id": index,
+                            "word": sentence.raw.substring(chunk.start, chunk.end),
+                            "parent": parent,
+                            "dependency": label,
+                            "level": 1,
+                            "background": chunk.color
                         }
                     });
-                    $scope.industries = chunkIndustries(analysisData.industries[0]);
-                    $scope.entityGroups = groupEntities(analysisData.entities);
-                    $scope.nonEmptyEntityGroups = nonEmptyGroups($scope.entityGroups);
-                    console.log("Entities: ", $scope.entityGroups);
-                    console.log("Non Empty Groups: ", $scope.nonEmptyEntityGroups);
+                });
 
-                    $scope.analysisSucceeded = true;
-                    $timeout($scope.renderChart, 0);
-                }
-            });
+                $("#syndeps").empty();
+                _.each($scope.sentences, function(sentence, index) {
+                    d3.select("#syndeps").append("svg")
+                        .attr("id", "svg" + index)
+                        .attr("height", 0);
+                    d3.drawTree('#syndeps #svg' + index,  $scope.sentences[index]);
+
+                });
+            }
         };
 
         $scope.onSelectionUpdated = function() {

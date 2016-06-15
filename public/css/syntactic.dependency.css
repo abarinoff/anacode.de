@@ -1,0 +1,54 @@
+.ng-cloak {
+    display:none;
+}
+
+.tree {
+    font-size: 28px;
+    text-align: center;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.word {
+    cursor: default;
+    text-shadow: none;
+}
+/*
+.word.active {
+    fill: #3276b1;
+}
+*/
+
+.tag {
+    fill: #777;
+}
+
+.edge {
+    stroke: #ccc;
+    stroke-width: 1.5;
+}
+
+.edge.active {
+    stroke: #3276b1;
+}
+
+.arrow {
+    fill: #ccc;
+    stroke: #ccc;
+    stroke-width: 1.5;
+}
+
+.arrow.active {
+    stroke: #3276b1;
+    fill: #3276b1;
+}
+
+
+.dependency {
+    fill: #ccc;
+    font-size: 18px;
+}
+
+.dependency.active {
+    fill: #3276b1;
+}

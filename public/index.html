@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/morris.css">
         <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/syntactic.dependency.css">
     </head>
 
     <body class="ng-cloak" ng-controller="DashboardController" ng-init="initialize()">
@@ -82,8 +83,40 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="section-title">Overall Summary</h2>
-                    <div class="section-body">
+                    <h2 class="section-title">
+                        <span>Syntactic Dependencies</span>
+                        <a role="button" class="close" data-toggle="collapse" data-target="#syndeps-section"
+                           ng-click="toggle('syndepsCollapsed')">
+                            <span class="glyphicon"
+                                  ng-class="{'glyphicon-chevron-up': syndepsCollapsed, 'glyphicon-chevron-down': !syndepsCollapsed}">
+                            </span>
+                        </a>
+                    </h2>
+                    <div class="section-body collapse" ng-class="::{in: !syndepsCollapsed}" id="syndeps-section">
+                        <div class="panel panel-default">
+                            <div class="tree" id="syndeps"></div>
+<!--
+                            <div ng-repeat="sentiment in sentiments">
+                                <an-syntactic-dependency sentence="sentiment" index="$index"></an-syntactic-dependency>
+                            </div>
+-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title">
+                        <span>Overall Summary</span>
+                        <a role="button" class="close" data-toggle="collapse" data-target="#summary-section"
+                           ng-click="toggle('summaryCollapsed')">
+                            <span class="glyphicon"
+                                  ng-class="{'glyphicon-chevron-up': summaryCollapsed, 'glyphicon-chevron-down': !summaryCollapsed}">
+                            </span>
+                        </a>
+                    </h2>
+                    <div class="section-body collapse" ng-class="::{in: !summaryCollapsed}" id="summary-section">
                         <div class="panel panel-default">
                             <div class="panel-body" ng-bind="summary"></div>
                         </div>
@@ -93,8 +126,16 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="section-title">Text Categorization</h2>
-                    <div class="section-body">
+                    <h2 class="section-title">
+                        <span>Text Categorization</span>
+                        <a role="button" class="close" data-toggle="collapse" data-target="#categorization-section"
+                           ng-click="toggleCategorization()">
+                            <span class="glyphicon"
+                                  ng-class="{'glyphicon-chevron-up': categorizationCollapsed, 'glyphicon-chevron-down': !categorizationCollapsed}">
+                            </span>
+                        </a>
+                    </h2>
+                    <div class="section-body collapse" ng-class="::{in: !categorizationCollapsed}" id="categorization-section">
                         <div class="row">
 
                             <div class="col-md-4">
@@ -156,8 +197,16 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="section-title">Entities</h2>
-                    <div class="section-body">
+                    <h2 class="section-title">
+                        <span>Entities</span>
+                        <a role="button" class="close" data-toggle="collapse" data-target="#entities-section"
+                           ng-click="toggle('entitiesCollapsed')">
+                            <span class="glyphicon"
+                                  ng-class="{'glyphicon-chevron-up': entitiesCollapsed, 'glyphicon-chevron-down': !entitiesCollapsed}">
+                            </span>
+                        </a>
+                    </h2>
+                    <div class="section-body collapse" ng-class="::{in: !entitiesCollapsed}" id="entities-section">
                         <div class="row">
                             <div class="col-md-4" ng-repeat="col in [0, 1, 2]" data-debug="{{ $index }}">
                                 <div data-debug="{{ $index }}" class="panel panel-default panel-entity-group"
@@ -199,12 +248,16 @@
         <script src="js/libs/bootstrap-toolkit.min.js"></script>
         <script src="js/libs/raphael.min.js"></script>
         <script src="js/libs/morris.js"></script>
+        <script src="js/libs/d3.min.js"></script>
+        <script src="js/libs/d3.syntactic.dependencies.js"></script>
         <script src="js/libs/angular.min.js"></script>
         <script src="js/libs/angular.resource.min.js"></script>
         <script src="js/libs/angular.sanitize.min.js"></script>
+        <script src="js/libs/angular.cookies.min.js"></script>
 
         <script src="js/src/models/models.js"></script>
         <script src="js/src/models/analysis.data.model.js"></script>
+        <script src="js/src/models/sentiment.data.model.js"></script>
         <script src="js/src/models/example.model.js"></script>
 
         <script src="js/src/controllers/controllers.js"></script>
@@ -216,6 +269,9 @@
 
         <script src="js/src/filters/filters.js"></script>
         <script src="js/src/filters/percentage.filter.js"></script>
+
+        <!--<script src="js/src/directives/directives.js"></script>-->
+        <!--<script src="js/src/directives/syntactic.dependency.graph.directive.js"></script>-->
 
         <script src="js/src/application.js"></script>
     </body>

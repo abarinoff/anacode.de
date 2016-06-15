@@ -1691,7 +1691,6 @@ Licensed under the BSD-2-Clause License.
       for (i = _j = 0, _len1 = _ref1.length; _j < _len1; i = ++_j) {
         value = _ref1[i];
         next = last - min - C * (value / total);
-        console.log(next);
         seg = new Morris.DonutSegment(cx, cy, w * 2, w, next, last, this.data[i].color || this.options.colors[idx % this.options.colors.length], this.options.backgroundColor, idx, this.raphael);        seg.render();
         this.segments.push(seg);
         seg.on('hover', this.select);

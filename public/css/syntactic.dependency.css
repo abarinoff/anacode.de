@@ -4,7 +4,7 @@
 
 .tree {
     font-size: 28px;
-    text-align: center;
+    /*text-align: center;*/
     overflow-y: hidden;
     overflow-x: auto;
 }

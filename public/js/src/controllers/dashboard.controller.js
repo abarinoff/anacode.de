@@ -110,9 +110,10 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
 
                 $("#syndeps").empty();
                 _.each($scope.sentences, function(sentence, index) {
-                    d3.select("#syndeps").append("svg")
-                        .attr("id", "svg" + index)
-                        .attr("height", 0);
+                    d3.select("#syndeps")
+                        .append("div").attr("class", "panel panel-default")
+                        .append("div").attr("class", "tree")
+                        .append("svg").attr("id", "svg" + index).attr("height", 0);
                     d3.drawTree('#syndeps #svg' + index,  $scope.sentences[index]);
 
                 });

@@ -75,8 +75,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="section-title">Text</h2>
-                    <div class="section-body">
-                        <div class="highlighted-text" ng-bind-html="highlightedText"></div>
+                    <div class="section-body text-section">
+                        <div class="panel panel-default">
+                            <div class="panel-body highlighted-text" ng-bind-html="highlightedText"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,14 +95,19 @@
                         </a>
                     </h2>
                     <div class="section-body collapse" ng-class="::{in: !syndepsCollapsed}" id="syndeps-section">
+                        <div id="syndeps"></div>
+<!--
                         <div class="panel panel-default">
-                            <div class="tree" id="syndeps"></div>
+-->
+                            <!--<div class="tree" id="syndeps"></div>-->
 <!--
                             <div ng-repeat="sentiment in sentiments">
                                 <an-syntactic-dependency sentence="sentiment" index="$index"></an-syntactic-dependency>
                             </div>
 -->
+<!--
                         </div>
+-->
                     </div>
                 </div>
             </div>

@@ -3,13 +3,14 @@
 }
 
 .tree {
-    font-size: 28px;
+    font-size: 20px;
     /*text-align: center;*/
     overflow-y: hidden;
     overflow-x: auto;
 }
 
 .word {
+    fill: #70838d;
     cursor: default;
     text-shadow: none;
 }

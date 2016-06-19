@@ -24,6 +24,10 @@ body {
     margin-right: 10px;
 }
 
+.text-section {
+    font-size: 20px;
+}
+
 .entity-title {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -284,7 +288,7 @@ text-area.form-control {
 */
 
 .highlighted-text {
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
     line-height: 22px;
 }
 

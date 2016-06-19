@@ -48,7 +48,12 @@
       treeWidth += data[i].length + offset;
     }
 
-    treeHeight = wordHeight + levelHeight(maximum((function() {
+    var levelsExist = false;
+    for(i = 0; i < data.length; i++) {
+      if(data[i].parent != null) levelsExist = true;
+    }
+
+    treeHeight = wordHeight/* + levelHeight(maximum((function() {
       var _k, _len2, _results;
       _results = [];
       for (_k = 0, _len2 = data.length; _k < _len2; _k++) {
@@ -56,7 +61,19 @@
         _results.push(edge.level);
       }
       return _results;
-    })())) + 2 * wordHeight;
+    })())) + 10*//* + 2 * wordHeight*/;
+
+    if(levelsExist) {
+      treeHeight += levelHeight(maximum((function() {
+       var _k, _len2, _results;
+       _results = [];
+       for (_k = 0, _len2 = data.length; _k < _len2; _k++) {
+       edge = data[_k];
+       _results.push(edge.level);
+       }
+       return _results;
+       })())) + 10;
+    }
 
     var nextX = offset;
     for (_k = 0, _len2 = data.length; _k < _len2; _k++) {
@@ -64,7 +81,7 @@
       item.x = nextX;
       item.midX = nextX + + item.length / 2;
       nextX += item.length + offset;
-      item.bottom = treeHeight - 1.8 * wordHeight;
+      item.bottom = treeHeight - /*1.8 * */wordHeight + 10;
       item.top = item.bottom - levelHeight(item.level);
     }
 
@@ -104,7 +121,7 @@
       return "word w" + d.id;
     }).attr('x', function(d) {
       return d.midX;
-    }).attr('y', treeHeight - wordHeight).on('mouseover', function(d) {
+    }).attr('y', treeHeight /*- wordHeight*/).on('mouseover', function(d) {
       svg.selectAll('.word, .dependency, .edge, .arrow').classed('active', false);
       return svg.selectAll(".w" + d.id).classed('active', true);
     }).on('mouseout', function(d) {

@@ -1,11 +1,20 @@
 angular.module("anacodeControllers").controller("DashboardController", ["_", "$", "$q", "$scope", "$sce", "$cookies",
-    "$timeout", "ExampleModel", "AnalysisDataModel", "SentimentDataModel",
-    function (_, $, $q, $scope, $sce, $cookies, $timeout, ExampleModel, AnalysisDataModel, SentimentDataModel) {
+    "$timeout", "$translate", "ExampleModel", "AnalysisDataModel", "SentimentDataModel",
+    function (_, $, $q, $scope, $sce, $cookies, $timeout, $translate, ExampleModel, AnalysisDataModel, SentimentDataModel) {
+
+        $scope.languages = [{label: "English (EN)", value: "en"}, {label: "Chinese (中文)", value: "ch"}];
 
         $scope.initialize = function() {
+            var lang = $translate.proposedLanguage() || $translate.use();
+            $scope.language = _.findWhere($scope.languages, {value: lang});
+
             _.each(["syndepsCollapsed", "summaryCollapsed",
                 "categorizationCollapsed", "entitiesCollapsed"], $scope.readToggle);
             $scope.getExamples();
+        };
+
+        $scope.onLanguageUpdated = function() {
+            $translate.use($scope.language.value);
         };
 
         $scope.readToggle = function(toggleName) {

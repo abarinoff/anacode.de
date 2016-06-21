@@ -1,0 +1,30 @@
+{
+  "dashboard": {
+    "form": {
+      "analysis.text.label": "Please input a text for analysis:",
+      "example.selector.label": "No clue? Try these out:",
+      "button": {
+        "clear": "Clear",
+        "analyze": "Analyze"
+      }
+    },
+
+    "section": {
+      "text": {
+        "title": "Text"
+      },
+      "syndeps": {
+        "title": "Syntactic Dependencies"
+      },
+      "summary": {
+        "title": "Overall Summary"
+      },
+      "categorization": {
+        "title": "Text Categorization"
+      },
+      "entities": {
+        "title": "Entities"
+      }
+    }
+  }
+}

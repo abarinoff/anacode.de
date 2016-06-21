@@ -27,7 +27,25 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <a class="navbar-brand" href="/"><img src="img/logo.png" height="30px"></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <form class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <!--<label for="languageSelector">Language:</label>-->
+                            <select id="languageSelector" class="form-control"
+                                    ng-model="language"
+                                    ng-options="language.label for language in languages"
+                                    ng-change="onLanguageUpdated()">
+                            </select>
+                        </div>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -38,11 +56,11 @@
                 <div class="col-md-12">
                     <div class="form-inline">
                         <div class="form-group">
-                            <label class="form-control-static">Please input a text for analysis:</label>
+                            <label class="form-control-static" translate="dashboard.form.analysis.text.label"></label>
                         </div>
 
                         <div class="form-group pull-right-sm pull-right-md pull-right-lg">
-                            <label for="exampleSelector">No clue? Try these out:</label>
+                            <label for="exampleSelector" translate="dashboard.form.example.selector.label"></label>
                             <select id="exampleSelector" class="form-control"
                                     ng-model="selectedExample"
                                     ng-options="example.title for example in examples"
@@ -63,8 +81,11 @@
                         </div>
 
                         <div class="pull-right">
-                            <button class="btn btn-default btn-action" ng-click="clear()">Clear</button>
-                            <button id="btn-analyze" class="btn btn-primary btn-action" ng-click="submit()">Analyze</button>
+                            <button class="btn btn-default btn-action" ng-click="clear()"
+                                    translate="dashboard.form.button.clear"></button>
+                            <button id="btn-analyze" class="btn btn-primary btn-action" ng-click="submit()"
+                                    translate="dashboard.form.button.analyze">
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -74,7 +95,7 @@
         <div class="container" ng-show="analysisSucceeded">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="section-title">Text</h2>
+                    <h2 class="section-title" translate="dashboard.section.text.title"></h2>
                     <div class="section-body text-section">
                         <div class="panel panel-default">
                             <div class="panel-body highlighted-text" ng-bind-html="highlightedText"></div>
@@ -86,7 +107,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="section-title">
-                        <span>Syntactic Dependencies</span>
+                        <span translate="dashboard.section.syndeps.title"></span>
                         <a role="button" class="close" data-toggle="collapse" data-target="#syndeps-section"
                            ng-click="toggle('syndepsCollapsed')">
                             <span class="glyphicon"
@@ -115,7 +136,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="section-title">
-                        <span>Overall Summary</span>
+                        <span translate="dashboard.section.summary.title"></span>
                         <a role="button" class="close" data-toggle="collapse" data-target="#summary-section"
                            ng-click="toggle('summaryCollapsed')">
                             <span class="glyphicon"
@@ -134,7 +155,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="section-title">
-                        <span>Text Categorization</span>
+                        <span translate="dashboard.section.categorization.title"></span>
                         <a role="button" class="close" data-toggle="collapse" data-target="#categorization-section"
                            ng-click="toggleCategorization()">
                             <span class="glyphicon"
@@ -205,7 +226,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="section-title">
-                        <span>Entities</span>
+                        <span translate="dashboard.section.entities.title"></span>
                         <a role="button" class="close" data-toggle="collapse" data-target="#entities-section"
                            ng-click="toggle('entitiesCollapsed')">
                             <span class="glyphicon"
@@ -261,6 +282,9 @@
         <script src="js/libs/angular.resource.min.js"></script>
         <script src="js/libs/angular.sanitize.min.js"></script>
         <script src="js/libs/angular.cookies.min.js"></script>
+        <script src="js/libs/angular.translate.min.js"></script>
+        <script src="js/libs/angular.translate.storage.cookie.min.js"></script>
+        <script src="js/libs/angular.translate.loader.static.files.min.js"></script>
 
         <script src="js/src/models/models.js"></script>
         <script src="js/src/models/analysis.data.model.js"></script>

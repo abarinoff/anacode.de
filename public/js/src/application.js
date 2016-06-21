@@ -1,5 +1,14 @@
-var anacode = angular.module('anacode', ["ngSanitize", "ngCookies", "anacodeModels", "anacodeControllers", "anacodeServices",
+var anacode = angular.module('anacode', ["ngSanitize", "ngCookies", "pascalprecht.translate",
+    "anacodeModels", "anacodeControllers", "anacodeServices",
     "anacodeFilters"/*, "anacodeDirectives"*/]);
+
+anacode.config(['$translateProvider', function ($translateProvider) {
+    $translateProvider
+        .useCookieStorage()
+        .useStaticFilesLoader({prefix: 'js/src/resources/locale-', suffix: '.json'})
+        .preferredLanguage('en')
+        .fallbackLanguage('en');
+}]);
 
 (function($, viewport) {
     $(document).ready(function() {

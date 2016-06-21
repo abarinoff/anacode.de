@@ -1,0 +1,30 @@
+{
+  "dashboard": {
+    "form": {
+      "analysis.text.label": "请输入用于分析的文本：",
+      "example.selector.label": "没有线索？尝试这些了：",
+      "button": {
+        "clear": "明确",
+        "analyze": "分析"
+      }
+    },
+
+    "section": {
+      "text": {
+        "title": "测试"
+      },
+      "syndeps": {
+        "title": "测试"
+      },
+      "summary": {
+        "title": "测试"
+      },
+      "categorization": {
+        "title": "测试"
+      },
+      "entities": {
+        "title": "测试"
+      }
+    }
+  }
+}

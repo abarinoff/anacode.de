@@ -293,6 +293,8 @@ text-area.form-control {
 }
 
 .highlighted-text > span {
+    padding-top: 9px;
+    padding-bottom: 9px;
     padding-left: 3px;
     padding-right: 3px;
     border-radius: 2px;

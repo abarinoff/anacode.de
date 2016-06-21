@@ -1,5 +1,5 @@
 (function() {
-  var wordHeight = 45, offset = 15, charWidth = 25;
+  var wordHeight = 45, offset = 25, charWidth = 20;
 
   d3.drawTree = function(svgElement, data) {
     var arrows, dependencies, e, edge, edges, item, svg, treeHeight, treeWidth, triangle, words, _i, _j, _k, _len, _len1, _len2;
@@ -105,10 +105,10 @@
     }).append("rect")
         .attr('height', wordHeight)
         .attr('width', function(d) {
-          return d.length;
+          return d.length + 6;
         })
         .attr('x', function(d) {
-          return d.x;
+          return d.x - 3;
         })
         .attr('y', function(d) {
           return d.bottom + 5;

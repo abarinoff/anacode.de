@@ -126,9 +126,8 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                     d3.select("#syndeps")
                         .append("div").attr("class", "panel panel-default")
                         .append("div").attr("class", "tree")
-                        .append("svg").attr("id", "svg" + index).attr("height", 0);
+                        .append("svg").attr("id", "svg" + index).attr("class", "syndeps").attr("height", 0);
                     d3.drawTree('#syndeps #svg' + index,  $scope.sentences[index]);
-
                 });
             }
         };

@@ -2,6 +2,10 @@
     display:none;
 }
 
+.syndeps {
+    font-size: inherit;
+}
+
 .tree {
     font-size: 20px;
     /*text-align: center;*/

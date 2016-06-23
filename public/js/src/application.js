@@ -5,6 +5,7 @@ var anacode = angular.module('anacode', ["ngSanitize", "ngCookies", "pascalprech
 anacode.config(['$translateProvider', function ($translateProvider) {
     $translateProvider
         .useCookieStorage()
+        .useSanitizeValueStrategy('sanitize')
         .useStaticFilesLoader({prefix: 'js/src/resources/locale-', suffix: '.json'})
         .preferredLanguage('en')
         .fallbackLanguage('en');

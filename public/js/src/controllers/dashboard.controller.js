@@ -15,6 +15,7 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
 
         $scope.onLanguageUpdated = function() {
             $translate.use($scope.language.value);
+            $scope.submit();
         };
 
         $scope.readToggle = function(toggleName) {
@@ -65,7 +66,10 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
         $scope.getAnalysisData = function() {
             var textValue = $("#exampleText").val();
 
-            $q.all([AnalysisDataModel.get({text: textValue}).$promise, SentimentDataModel.get({text: textValue}).$promise])
+            $q.all(
+                [
+                    AnalysisDataModel.get({text: textValue, lang: $scope.language.value}).$promise,
+                    SentimentDataModel.get({text: textValue, lang: $scope.language.value}).$promise])
                 .then(function (response) {
                     var analysisData = response[0], sentimentData = response[1];
 
@@ -138,13 +142,14 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
         };
 
         $scope.renderChart = function() {
+            var wordsLabel = $translate.instant("dashboard.section.categorization.panel.sentiments.words.label");
             Morris.Donut({
                 element: "sentiment-analysis",
                 data: $scope.sentiments.reverse(),
                 colors: ["#AB001C", "#1CA861"],
                 labelColor: "#70838d",
                 topLabel: $scope.wordsCount,
-                bottomLabel: "WORDS",
+                bottomLabel: wordsLabel,
                 formatter: function(value) { return value },
                 resize: true
             });

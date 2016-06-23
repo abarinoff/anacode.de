@@ -20,7 +20,18 @@
         "title": "综述"
       },
       "categorization": {
-        "title": "文本分类"
+        "title": "文本分类",
+        "panel": {
+          "sentiments": {
+            "title": "-Sentiments-",
+            "positive.label": "-Positive-",
+            "negative.label": "-Negative-",
+            "words.label": "-WORDS-"
+          },
+          "industries": {
+            "title": "-Industries-"
+          }
+        }
       },
       "entities": {
         "title": "实体"

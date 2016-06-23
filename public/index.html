@@ -170,18 +170,20 @@
                                 <div id="sentiments" class="panel panel-default">
 
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Sentiments</h3>
+                                        <h3 class="panel-title" translate="dashboard.section.categorization.panel.sentiments.title"></h3>
                                     </div>
                                     <div class="panel-body">
                                         <!--  Legend. -->
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <h3 class="sentiments-probability text-center">{{ sentiments[1].value | percentage:2 }}</h3>
-                                                <h3 class="sentiments-label sentiments-label-positive text-center">Positive</h3>
+                                                <h3 class="sentiments-label sentiments-label-positive text-center"
+                                                    translate="dashboard.section.categorization.panel.sentiments.positive.label"></h3>
                                             </div>
                                             <div class="col-xs-6">
                                                 <h3 class="sentiments-probability text-center">{{ sentiments[0].value | percentage:2 }}</h3>
-                                                <h3 class="sentiments-label sentiments-label-negative text-center">Negative</h3>
+                                                <h3 class="sentiments-label sentiments-label-negative text-center"
+                                                    translate="dashboard.section.categorization.panel.sentiments.negative.label"></h3>
                                             </div>
                                         </div>
 
@@ -198,7 +200,7 @@
                                 <div id="industries" class="industries panel panel-default">
 
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Industries</h3>
+                                        <h3 class="panel-title" translate="dashboard.section.categorization.panel.industries.title"></h3>
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">

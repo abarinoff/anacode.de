@@ -20,7 +20,18 @@
         "title": "Overall Summary"
       },
       "categorization": {
-        "title": "Text Categorization"
+        "title": "Text Categorization",
+        "panel": {
+          "sentiments": {
+            "title": "Sentiments",
+            "positive.label": "Positive",
+            "negative.label": "Negative",
+            "words.label": "WORDS"
+          },
+          "industries": {
+            "title": "Industries"
+          }
+        }
       },
       "entities": {
         "title": "Entities"

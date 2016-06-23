@@ -23,13 +23,13 @@
         "title": "文本分类",
         "panel": {
           "sentiments": {
-            "title": "-Sentiments-",
-            "positive.label": "-Positive-",
-            "negative.label": "-Negative-",
-            "words.label": "-WORDS-"
+            "title": "情感分析",
+            "positive.label": "正面",
+            "negative.label": "负面",
+            "words.label": "次数"
           },
           "industries": {
-            "title": "-Industries-"
+            "title": "分类"
           }
         }
       },

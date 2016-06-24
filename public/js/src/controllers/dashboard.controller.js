@@ -160,9 +160,15 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                 colors: ["#AB001C", "#1CA861"],
                 labelColor: "#70838d",
                 topLabel: $scope.wordsCount,
-                bottomLabel: wordsLabel,
+                bottomLabel: decodeHtmlEntity(wordsLabel),
                 formatter: function(value) { return value },
                 resize: true
+            });
+        };
+
+        var decodeHtmlEntity = function(str) {
+            return str.replace(/&#(\d+);/g, function(match, dec) {
+                return String.fromCharCode(dec);
             });
         };
 

@@ -101,6 +101,14 @@
     words = svg.selectAll('.word').data(data).enter().append("g");
 
     words.filter(function(d) {
+      return d.tooltip;
+    })
+    .attr("class","syndeps-tooltip")
+    .attr("data-content", function(d) {
+      return d.tooltip;
+    });
+
+    words.filter(function(d) {
       return d.background != undefined;
     }).append("rect")
         .attr('height', wordHeight)

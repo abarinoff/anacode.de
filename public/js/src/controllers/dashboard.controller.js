@@ -109,6 +109,11 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                         var dependency = _.findWhere(sentence.dependencies, {to: index});
                         var parent = _.isUndefined(dependency) ? null : dependency.from;
                         var label = _.isUndefined(dependency) ? "" : dependency.label;
+                        var tooltip = _.isUndefined(chunk.color/*chunk.tooltip_data*/) ? null :
+                            _.reduce(/*chunk.tooltip_data*/{"Product": "Car", "Evaluation": "+3", "Industry": "Automotive"},
+                                function(memo, value, key) {
+                                    return memo + "<div>" + key + ": " + value + "</div>";
+                                }, "");
 
                         return {
                             "id": index,
@@ -116,7 +121,8 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                             "parent": parent,
                             "dependency": label,
                             "level": 1,
-                            "background": chunk.color
+                            "background": chunk.color,
+                            "tooltip": tooltip
                         }
                     });
                 });
@@ -128,6 +134,12 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                         .append("div").attr("class", "tree")
                         .append("svg").attr("id", "svg" + index).attr("class", "syndeps").attr("height", 0);
                     d3.drawTree('#syndeps #svg' + index,  $scope.sentences[index]);
+                });
+                $(".syndeps-tooltip").popover({
+                    'container': 'body',
+                    'placement': 'bottom',
+                    'trigger': 'hover',
+                    'html': true
                 });
             }
         };

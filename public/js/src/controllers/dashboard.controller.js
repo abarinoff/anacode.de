@@ -112,6 +112,15 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                             _.reduce(chunk.tooltip_data, function(memo, value) {
                                 return memo + "<div>" + value.key + ": " + value.value + "</div>";
                             }, "");
+                        if((index % 2) == 0) {
+                            chunk.dependency_tooltip_data = [
+                                {key: "key1", value: "value1"}, {key: "key2", value: "value2"}];
+                        }
+                        
+                        var dependencyTooltip = _.isUndefined(chunk.dependency_tooltip_data) ? null :
+                            _.reduce(chunk.dependency_tooltip_data, function(memo, value) {
+                                return memo + "<div>" + value.key + ": " + value.value + "</div>";
+                            }, "");
 
                         return {
                             "id": index,
@@ -120,7 +129,8 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                             "dependency": label,
                             "level": 1,
                             "background": chunk.color,
-                            "tooltip": tooltip
+                            "tooltip": tooltip,
+                            "dependencyTooltip": dependencyTooltip
                         }
                     });
                 });

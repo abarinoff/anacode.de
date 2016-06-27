@@ -166,7 +166,16 @@
     }).attr('y', function(d) {
       return d.arrow - 7;
     }).attr('text-anchor', 'middle').attr('font-size', '90%');
-  
+
+    dependencies.filter(function(d) {
+      return d.dependencyTooltip;
+    })
+    .classed("syndeps-tooltip", true)
+    .attr("data-content", function(d) {
+      return d.dependencyTooltip;
+    });
+
+
     triangle = d3.svg.symbol().type('triangle-up').size(20);
   
     return arrows = svg.selectAll('.arrow').data(data).enter().append('path').filter(function(d) {

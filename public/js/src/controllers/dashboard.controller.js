@@ -95,6 +95,10 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
 
                 $scope.analysisSucceeded = true;
                 $timeout($scope.renderChart, 0);
+                $timeout(function() {
+                    activateTooltips(".entity-recognition-tooltip", "bottom")
+                }, 0);
+
             }
 
             function processSentimentData(response) {
@@ -138,10 +142,6 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                         return memo + "<div>" + value.key + ": " + value.value + "</div>";
                     }, "");
             }
-
-            function activateTooltips(selector, placement) {
-                $(selector).popover({'container': 'body', 'placement': placement, 'trigger': 'hover', 'html': true});
-            }
         };
 
         $scope.onSelectionUpdated = function() {
@@ -176,6 +176,10 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                 return String.fromCharCode(dec);
             });
         };
+
+        function activateTooltips(selector, placement) {
+            $(selector).popover({'container': 'body', 'placement': placement, 'trigger': 'hover', 'html': true});
+        }
 
         function chunkIndustries(industries) {
             var chunkedIndustries = [[],[],[]];

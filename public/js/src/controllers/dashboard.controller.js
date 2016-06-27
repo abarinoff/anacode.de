@@ -108,11 +108,10 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                         var dependency = _.findWhere(sentence.dependencies, {to: index});
                         var parent = _.isUndefined(dependency) ? null : dependency.from;
                         var label = _.isUndefined(dependency) ? "" : dependency.label;
-                        var tooltip = _.isUndefined(chunk.color/*chunk.tooltip_data*/) ? null :
-                            _.reduce(/*chunk.tooltip_data*/{"Product": "Car", "Evaluation": "+3", "Industry": "Automotive"},
-                                function(memo, value, key) {
-                                    return memo + "<div>" + key + ": " + value + "</div>";
-                                }, "");
+                        var tooltip = _.isUndefined(chunk.tooltip_data) ? null :
+                            _.reduce(chunk.tooltip_data, function(memo, value) {
+                                return memo + "<div>" + value.key + ": " + value.value + "</div>";
+                            }, "");
 
                         return {
                             "id": index,

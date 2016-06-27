@@ -170,7 +170,7 @@
     dependencies.filter(function(d) {
       return d.dependencyTooltip;
     })
-    .classed("syndeps-tooltip", true)
+    .classed("syndeps-dependency-tooltip", true)
     .attr("data-content", function(d) {
       return d.dependencyTooltip;
     });

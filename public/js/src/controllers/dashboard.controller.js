@@ -108,19 +108,9 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                         var dependency = _.findWhere(sentence.dependencies, {to: index});
                         var parent = _.isUndefined(dependency) ? null : dependency.from;
                         var label = _.isUndefined(dependency) ? "" : dependency.label;
-                        var tooltip = _.isUndefined(chunk.tooltip_data) ? null :
-                            _.reduce(chunk.tooltip_data, function(memo, value) {
-                                return memo + "<div>" + value.key + ": " + value.value + "</div>";
-                            }, "");
-                        if((index % 2) == 0) {
-                            chunk.dependency_tooltip_data = [
-                                {key: "key1", value: "value1"}, {key: "key2", value: "value2"}];
-                        }
-                        
-                        var dependencyTooltip = _.isUndefined(chunk.dependency_tooltip_data) ? null :
-                            _.reduce(chunk.dependency_tooltip_data, function(memo, value) {
-                                return memo + "<div>" + value.key + ": " + value.value + "</div>";
-                            }, "");
+                        var dependencyTooltipData = _.isUndefined(dependency) ? undefined : dependency.tooltip_data;
+                        var tooltip = formatTooltip(chunk.tooltip_data);
+                        var dependencyTooltip = formatTooltip(dependencyTooltipData);
 
                         return {
                             "id": index,
@@ -143,12 +133,19 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                         .append("svg").attr("id", "svg" + index).attr("class", "syndeps").attr("height", 0);
                     d3.drawTree('#syndeps #svg' + index,  $scope.sentences[index]);
                 });
-                $(".syndeps-tooltip").popover({
-                    'container': 'body',
-                    'placement': 'bottom',
-                    'trigger': 'hover',
-                    'html': true
-                });
+                activateTooltips(".syndeps-tooltip", "bottom");
+                activateTooltips(".syndeps-dependency-tooltip", "top");
+            }
+
+            function formatTooltip(tooltipData) {
+                return _.isUndefined(tooltipData) ? null :
+                    _.reduce(tooltipData, function(memo, value) {
+                        return memo + "<div>" + value.key + ": " + value.value + "</div>";
+                    }, "");
+            }
+
+            function activateTooltips(selector, placement) {
+                $(selector).popover({'container': 'body', 'placement': placement, 'trigger': 'hover', 'html': true});
             }
         };
 

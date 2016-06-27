@@ -89,12 +89,7 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                 $scope.highlightedText = $sce.trustAsHtml(analysisData.markup);
                 $scope.summary = analysisData.summary;
                 $scope.wordsCount = analysisData.word_count;
-                $scope.sentiments = _.map(analysisData.sentiment[0], function(sentiment) {
-                    return {
-                        label: sentiment.label,
-                        value: sentiment.probability
-                    }
-                });
+                $scope.sentiments = analysisData.sentiment;
                 $scope.industries = chunkIndustries(analysisData.industries[0]);
                 $scope.entityGroups = groupEntities(analysisData.entities);
 
@@ -159,9 +154,13 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
 
         $scope.renderChart = function() {
             var wordsLabel = $translate.instant("dashboard.section.categorization.panel.sentiments.words.label");
+            var chartData = _.map($scope.sentiments, function(value, key) {
+                return {label: key, value: value}
+            });
+
             Morris.Donut({
                 element: "sentiment-analysis",
-                data: $scope.sentiments.reverse(),
+                data: chartData,
                 colors: ["#AB001C", "#1CA861"],
                 labelColor: "#70838d",
                 topLabel: $scope.wordsCount,

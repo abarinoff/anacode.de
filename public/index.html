@@ -176,12 +176,12 @@
                                         <!--  Legend. -->
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <h3 class="sentiments-probability text-center">{{ sentiments[1].value | percentage:2 }}</h3>
+                                                <h3 class="sentiments-probability text-center">{{ sentiments.positive | percentage:2 }}</h3>
                                                 <h3 class="sentiments-label sentiments-label-positive text-center"
                                                     translate="dashboard.section.categorization.panel.sentiments.positive.label"></h3>
                                             </div>
                                             <div class="col-xs-6">
-                                                <h3 class="sentiments-probability text-center">{{ sentiments[0].value | percentage:2 }}</h3>
+                                                <h3 class="sentiments-probability text-center">{{ sentiments.negative | percentage:2 }}</h3>
                                                 <h3 class="sentiments-label sentiments-label-negative text-center"
                                                     translate="dashboard.section.categorization.panel.sentiments.negative.label"></h3>
                                             </div>

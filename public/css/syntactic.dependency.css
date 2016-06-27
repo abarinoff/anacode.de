@@ -7,7 +7,8 @@
 }
 
 .tree {
-    font-size: 20px;
+    padding: 15px;
+    font-size: 16px;
     /*text-align: center;*/
     overflow-y: hidden;
     overflow-x: auto;
@@ -51,7 +52,7 @@
 
 .dependency {
     fill: #ccc;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .dependency.active {

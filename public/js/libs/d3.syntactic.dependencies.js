@@ -1,5 +1,5 @@
 (function() {
-  var wordHeight = 45, offset = 25, charWidth = 20;
+  var wordHeight = 22, offset = 25, charWidth = 20, borderOffset = 3;
 
   d3.drawTree = function(svgElement, data) {
     var arrows, dependencies, e, edge, edges, item, svg, treeHeight, treeWidth, triangle, words, _i, _j, _k, _len, _len1, _len2;
@@ -43,10 +43,11 @@
       item.length = charWidth * item.word.length;
     }
 
-    treeWidth = offset;
+    treeWidth = borderOffset;
     for(i = 0; i < data.length; i++) {
       treeWidth += data[i].length + offset;
     }
+    treeWidth += borderOffset - offset;
 
     var levelsExist = false;
     for(i = 0; i < data.length; i++) {
@@ -75,13 +76,13 @@
        })())) + 10;
     }
 
-    var nextX = offset;
+    var nextX = borderOffset;
     for (_k = 0, _len2 = data.length; _k < _len2; _k++) {
       item = data[_k];
       item.x = nextX;
       item.midX = nextX + + item.length / 2;
       nextX += item.length + offset;
-      item.bottom = treeHeight - /*1.8 * */wordHeight + 10;
+      item.bottom = treeHeight - /*1.8 * */wordHeight + 5;
       item.top = item.bottom - levelHeight(item.level);
     }
 
@@ -129,7 +130,7 @@
       return "word w" + d.id;
     }).attr('x', function(d) {
       return d.midX;
-    }).attr('y', treeHeight /*- wordHeight*/).on('mouseover', function(d) {
+    }).attr('y', treeHeight + 5/*- wordHeight*/).on('mouseover', function(d) {
       svg.selectAll('.word, .dependency, .edge, .arrow').classed('active', false);
       return svg.selectAll(".w" + d.id).classed('active', true);
     }).on('mouseout', function(d) {

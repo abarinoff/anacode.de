@@ -169,6 +169,7 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                 formatter: function(value) { return value },
                 resize: true
             });
+            $(window).trigger('resize');
         };
 
         var decodeHtmlEntity = function(str) {

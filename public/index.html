@@ -240,16 +240,16 @@
                         <div class="row">
                             <div class="col-md-4" ng-repeat="col in [0, 1, 2]" data-debug="{{ $index }}">
                                 <div data-debug="{{ $index }}" class="panel panel-default panel-entity-group"
-                                     style="border-left-color: {{group.entities[0].value.background_color}}"
-                                     ng-repeat="group in nonEmptyEntityGroups" ng-if="(group.entities.length) > 0 && ($index % 3 == col)">
+                                     style="border-left-color: {{groupValue[0].entityProperties.background_color}}"
+                                     ng-repeat="(groupKey, groupValue) in entityGroups" ng-if="($index % 3 == col)">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">{{ group.label }}</h3>
+                                        <h3 class="panel-title">{{ groupKey }}</h3>
                                     </div>
                                     <div class="panel-body">
-                                        <div ng-repeat="entity in group.entities">
-                                            <h3 class="entity-title">{{ entity.label }}</h3>
+                                        <div ng-repeat="entity in groupValue">
+                                            <h3 class="entity-title">{{ entity.entityProperties.entity_type }}</h3>
                                             <ul class="list-group">
-                                                <li class="list-group-item" ng-repeat="(key, value) in entity.value" ng-if="key !== 'background_color'">
+                                                <li class="list-group-item" ng-repeat="(key, value) in entity" ng-if="key !== 'entityProperties'">
                                                     <span class="badge">{{ value.freq }}</span>
                                                     {{ key }}
                                                 </li>

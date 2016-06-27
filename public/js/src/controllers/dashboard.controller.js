@@ -97,7 +97,6 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
                 });
                 $scope.industries = chunkIndustries(analysisData.industries[0]);
                 $scope.entityGroups = groupEntities(analysisData.entities);
-                $scope.nonEmptyEntityGroups = nonEmptyGroups($scope.entityGroups);
 
                 $scope.analysisSucceeded = true;
                 $timeout($scope.renderChart, 0);
@@ -190,64 +189,15 @@ angular.module("anacodeControllers").controller("DashboardController", ["_", "$"
         }
 
         function groupEntities(entities) {
-            var apiToGroupMap = {
-                producttypes: {group: "products", label: "Products and services"},
-                productmodels: {group: "products", label: "Product models"},
-                productversions: {group: "products", label: "Product versions"},
-                features: {group: "products", label: "Product features"},
-
-                brands: {group: "companies", label: "Brands"},
-
-                persons: {group: "people", label: "Persons"},
-
-                locations: {group: "contexts", label: "Locations"},
-                dates: {group: "contexts", label: "Dates"},
-                times: {group: "contexts", label: "Times"},
-                holidays: {group: "contexts", label: "Holidays"},
-                industrys: {group: "contexts", label: "Industries"},
-
-                laws: {group: "other", label: "Laws"},
-                documents: {group: "other", label: "Documents"},
-                bodyparts: {group: "other", label: "Body parts"}
-            };
-
-            var groups = {
-                products: {label: "Products", entities: []},
-                companies: {label: "Organizations", entities: []},
-                people: {label: "People", entities: []},
-                contexts: {label: "Contexts", entities: []},
-                other: {label: "Other", entities: []}
-            };
-
-            _.each(entities, function(entity, apiEntityName) {
-                if(_.has(apiToGroupMap, apiEntityName)) {
-                    var groupInfo = apiToGroupMap[apiEntityName];
-
-                    groups[groupInfo.group].entities.push({
-                        label: groupInfo.label,
-                        value: entity
-                    });
-                } else {
-                    groups.other.entities.push({
-                        label: capitalizeFirstLetter(apiEntityName),
-                        value: entity
-                    });
-                }
-            });
-
-            return groups;
-        }
-
-        function nonEmptyGroups(groups) {
-            var nonEmptyGroups = _.pick(groups, function(value, key, object) {
-                return value.entities.length > 0;
-            });
-
-            return nonEmptyGroups;
-        }
-
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
+            return _.chain(entities).map(function(entity) {
+                var strippedEntity = _.omit(entity, "entity_group_id", "entity_group", "entity_type", "background_color");
+                var entityProperties = _.pick(entity, "entity_group_id", "entity_group", "entity_type", "background_color");
+                return _.extend(strippedEntity, {entityProperties: entityProperties});
+            }).sortBy(function(entity) {
+                return entity.entityProperties.entity_group_id;
+            }).groupBy(function(entity) {
+                return entity.entityProperties.entity_group;
+            }).value();
         }
     }
 ]);

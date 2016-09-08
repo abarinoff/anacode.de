@@ -17,26 +17,26 @@
       return results;
     })();
 
-/*
-    for (_i = 0, _len = edges.length; _i < _len; _i++) {
-      edge = edges[_i];
-      for (_j = 0, _len1 = edges.length; _j < _len1; _j++) {
-        edge = edges[_j];
-        edge.level = 1 + maximum((function() {
-          var _k, _len2, _results;
-          _results = [];
-          for (_k = 0, _len2 = edges.length; _k < _len2; _k++) {
-            e = edges[_k];
-            if (under(edge, e)) {
-              _results.push(e.level);
-            }
+    /*
+        for (_i = 0, _len = edges.length; _i < _len; _i++) {
+          edge = edges[_i];
+          for (_j = 0, _len1 = edges.length; _j < _len1; _j++) {
+            edge = edges[_j];
+            edge.level = 1 + maximum((function() {
+              var _k, _len2, _results;
+              _results = [];
+              for (_k = 0, _len2 = edges.length; _k < _len2; _k++) {
+                e = edges[_k];
+                if (under(edge, e)) {
+                  _results.push(e.level);
+                }
+              }
+                  console.log("Levels: ", _results);
+              return _results;
+            })());
           }
-              console.log("Levels: ", _results);
-          return _results;
-        })());
-      }
-    }
-*/
+        }
+    */
 
     for(var i = 0; i < data.length; i++) {
       item = data[i];
@@ -53,6 +53,32 @@
     for(i = 0; i < data.length; i++) {
       if(data[i].parent != null) levelsExist = true;
     }
+
+    var connectedItems = [];
+    for(i = 0; i < data.length; i++) {
+      if(data[i].parent != null) connectedItems.push([data[i].parent, i].sort());
+    }
+
+    var lvlChanged;
+    do {
+      lvlChanged = false;
+      for(i = 0; i < data.length; i++) {
+        if(data[i].parent != null) {
+          for(j = 0; j < connectedItems.length; j++) {
+            var currentItem = i;
+            var parentItem = data[i].parent;
+            var start = connectedItems[j][0];
+            var end = connectedItems[j][1];
+            if(((currentItem > start && currentItem < end) || (parentItem > start && parentItem < end))
+                && data[i].level == data[start].level
+                && data[i].level == data[end].level) {
+              data[i].level++;
+              lvlChanged = true;
+            }
+          }
+        }
+      }
+    } while(lvlChanged);
 
     treeHeight = wordHeight/* + levelHeight(maximum((function() {
       var _k, _len2, _results;
